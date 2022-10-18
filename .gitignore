@@ -236,4 +236,4 @@ _Pvt_Extensions
 /ContactdocIO.ndproj
 /.mfractor
 src/WebUI/ClientApp/package-lock.json
-src/WebUI/appsettings.json
+src/WebUI/appsettings.Development.json
