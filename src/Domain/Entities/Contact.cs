@@ -16,6 +16,6 @@ public class Contact : BaseAuditableEntity
 
     public string OwnedByUserId = default!;
 
-    public User OwnedByUser = null!;
+    public IOUser OwnedByUser = null!;
 }
 

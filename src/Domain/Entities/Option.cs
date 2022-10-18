@@ -1,6 +1,6 @@
 ﻿namespace ContactdocIO.Domain.Entities;
 
-public class Option
+public class Option : BaseEntity
 {
     public int ContactId { get; set; }
 

@@ -1,12 +1,12 @@
 ﻿using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 using ContactdocIO.Application.Common.Interfaces;
-using ContactdocIO.Domain.Entities;
 using ContactdocIO.Infrastructure.Identity;
 using ContactdocIO.Infrastructure.Persistence.Interceptors;
 using Duende.IdentityServer.EntityFramework.Options;
 using MediatR;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
 namespace ContactdocIO.Infrastructure.Persistence;
@@ -27,9 +27,11 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
         _auditableEntitySaveChangesInterceptor = auditableEntitySaveChangesInterceptor;
     }
 
-    public DbSet<TodoList> TodoLists => Set<TodoList>();
+    public DbSet<Contact> Contacts => Set<Contact>();
 
-    public DbSet<TodoItem> TodoItems => Set<TodoItem>();
+    public DbSet<Option> Options => Set<Option>();
+
+    public DbSet<IOUser> IOUsers => Set<IOUser>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

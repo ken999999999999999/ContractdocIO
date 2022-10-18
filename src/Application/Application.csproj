@@ -19,4 +19,14 @@
         <ProjectReference Include="..\Domain\Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Contacts\" />
+      <None Remove="Contacts\Commands\" />
+      <None Remove="Contacts\Commands\CreateContact\" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Contacts\" />
+      <Folder Include="Contacts\Commands\" />
+      <Folder Include="Contacts\Commands\CreateContact\" />
+    </ItemGroup>
 </Project>

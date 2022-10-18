@@ -4,7 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <RootNamespace>ContactdocIO.Infrastructure</RootNamespace>
         <AssemblyName>ContactdocIO.Infrastructure</AssemblyName>
-        <ImplicitUsings>disable</ImplicitUsings>
+        <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
@@ -21,4 +21,10 @@
         <ProjectReference Include="..\Application\Application.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Persistence\Migrations\" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Persistence\Migrations\" />
+    </ItemGroup>
 </Project>
