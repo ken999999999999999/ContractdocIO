@@ -6,7 +6,6 @@ using ContactdocIO.Infrastructure.Persistence.Interceptors;
 using ContactdocIO.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace Microsoft.Extensions.DependencyInjection;

@@ -1,9 +1,6 @@
 ﻿using System.Runtime.Serialization;
 using AutoMapper;
 using ContactdocIO.Application.Common.Mappings;
-using ContactdocIO.Application.Common.Models;
-using ContactdocIO.Application.TodoLists.Queries.GetTodos;
-using ContactdocIO.Domain.Entities;
 using NUnit.Framework;
 
 namespace ContactdocIO.Application.UnitTests.Common.Mappings;
@@ -28,10 +25,7 @@ public class MappingTests
     }
 
     [Test]
-    [TestCase(typeof(TodoList), typeof(TodoListDto))]
-    [TestCase(typeof(TodoItem), typeof(TodoItemDto))]
-    [TestCase(typeof(TodoList), typeof(LookupDto))]
-    [TestCase(typeof(TodoItem), typeof(LookupDto))]
+
     public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
     {
         var instance = GetInstanceOf(source);

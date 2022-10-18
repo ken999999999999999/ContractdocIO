@@ -12,6 +12,7 @@
 
     <ItemGroup>
       <None Remove="appsettings.json" />
+      <None Remove="CheckPoint.NET" />
     </ItemGroup>
 
     <ItemGroup>
@@ -31,6 +32,7 @@
         <PackageReference Include="FluentAssertions" Version="6.7.0" />
         <PackageReference Include="Moq" Version="4.18.1" />
         <PackageReference Include="Respawn" Version="4.0.0" />
+        <PackageReference Include="CheckPoint.NET" Version="0.5.1" />
     </ItemGroup>
 
     <ItemGroup>
