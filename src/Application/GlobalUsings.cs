@@ -3,3 +3,8 @@ global using System.Threading.Tasks;
 global using ContactdocIO.Application.Common.Interfaces;
 global using MediatR;
 global using Microsoft.EntityFrameworkCore;
+global using ContactdocIO.Application.Common.Extension;
+global using AutoMapper;
+global using AutoMapper.QueryableExtensions;
+global using ContactdocIO.Application.Common.Mappings;
+global using ContactdocIO.Application.Common.Models;

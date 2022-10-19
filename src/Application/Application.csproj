@@ -23,10 +23,18 @@
       <None Remove="Contacts\" />
       <None Remove="Contacts\Commands\" />
       <None Remove="Contacts\Commands\CreateContact\" />
+      <None Remove="Contacts\Queries\" />
+      <None Remove="Contacts\Queries\GetContactsWithPagination\" />
+      <None Remove="Contacts\Dto\" />
+      <None Remove="Common\Extension\" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Contacts\" />
       <Folder Include="Contacts\Commands\" />
       <Folder Include="Contacts\Commands\CreateContact\" />
+      <Folder Include="Contacts\Queries\" />
+      <Folder Include="Contacts\Queries\GetContactsWithPagination\" />
+      <Folder Include="Contacts\Dto\" />
+      <Folder Include="Common\Extension\" />
     </ItemGroup>
 </Project>

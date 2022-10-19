@@ -22,11 +22,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="Persistence\Migrations\" />
       <None Remove="Files\Maps\" />
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="Persistence\Migrations\" />
       <Folder Include="Files\Maps\" />
     </ItemGroup>
 </Project>
