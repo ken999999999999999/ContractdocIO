@@ -37,8 +37,19 @@ public static class ConfigureServices
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
 
-        services.AddIdentityServer()
-            .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+        services.AddIdentityServer(options =>
+        {
+            options.IssuerUri = configuration["IdentityServer:Issuer"];
+        }).AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
+             {
+                 options.Clients.AddIdentityServerSPA("contact.io", SPA =>
+                 {
+                     SPA.WithRedirectUri("/silent-callback/")
+                     .WithRedirectUri("/login-callback/")
+                     .WithLogoutRedirectUri("/logout-callback/");
+                 });
+             });
+
 
         services.AddTransient<IDateTime, DateTimeService>();
         services.AddTransient<IIdentityService, IdentityService>();
