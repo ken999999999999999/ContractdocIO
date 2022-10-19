@@ -8,3 +8,5 @@ global using AutoMapper;
 global using AutoMapper.QueryableExtensions;
 global using ContactdocIO.Application.Common.Mappings;
 global using ContactdocIO.Application.Common.Models;
+global using ContactdocIO.Domain.Common;
+global using ContactdocIO.Domain.Entities;

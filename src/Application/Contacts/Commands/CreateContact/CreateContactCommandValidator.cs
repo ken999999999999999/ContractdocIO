@@ -6,7 +6,8 @@ namespace CleanArchitecture.Application.TodoItems.Commands.CreateTodoItem;
 public class CreateContactCommandValidator : AbstractValidator<CreateContactCommand>
 {
 
-    private IApplicationDbContext _context;
+    private readonly IApplicationDbContext _context;
+
     public CreateContactCommandValidator(IApplicationDbContext context)
     {
         _context = context;
@@ -20,6 +21,7 @@ public class CreateContactCommandValidator : AbstractValidator<CreateContactComm
         RuleForEach(v => v.Options).ChildRules(option =>
         {
             option.RuleFor(x => x.Content).MaximumLength(200).NotEmpty();
+            option.RuleFor(x => x.Order).GreaterThanOrEqualTo(0);
         });
 
         RuleFor(v => v.ParentContactId)

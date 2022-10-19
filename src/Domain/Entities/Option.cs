@@ -9,5 +9,7 @@ public class Option : BaseEntity
     public string Content { get; set; } = default!;
 
     public bool IsRequired { get; set; } = false;
+
+    public int Order { get; set; }
 }
 

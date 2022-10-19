@@ -27,6 +27,7 @@
       <None Remove="Contacts\Queries\GetContactsWithPagination\" />
       <None Remove="Contacts\Dto\" />
       <None Remove="Common\Extension\" />
+      <None Remove="Contacts\Queries\GetContactsWithPagination %28copy%29\" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Contacts\" />
@@ -36,5 +37,6 @@
       <Folder Include="Contacts\Queries\GetContactsWithPagination\" />
       <Folder Include="Contacts\Dto\" />
       <Folder Include="Common\Extension\" />
+      <Folder Include="Contacts\Queries\GetContact\" />
     </ItemGroup>
 </Project>

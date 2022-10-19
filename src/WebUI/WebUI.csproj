@@ -23,8 +23,8 @@
         <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.5" />
         <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.5" />
         <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="6.0.5" />
-        <PackageReference Include="NSwag.AspNetCore" Version="13.16.0" />
-        <PackageReference Include="NSwag.MSBuild" Version="13.16.0">
+        <PackageReference Include="NSwag.AspNetCore" Version="13.17.0" />
+        <PackageReference Include="NSwag.MSBuild" Version="13.17.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
@@ -45,10 +45,8 @@
         <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     </PropertyGroup>
 
-    <Target Name="NSwag" AfterTargets="Build">
-        <Copy SourceFiles="@(Reference)" DestinationFolder="$(OutDir)References" />
-        <Exec Command="$(NSwagExe_Net60) run /variables:Configuration=$(Configuration)" />
-        <RemoveDir Directories="$(OutDir)References" />
+    <Target Name="NSwag" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)' == 'Debug' ">
+        <Exec WorkingDirectory="$(ProjectDir)" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Net60) run nswag.json /variables:Configuration=$(Configuration)" />
     </Target>
  
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

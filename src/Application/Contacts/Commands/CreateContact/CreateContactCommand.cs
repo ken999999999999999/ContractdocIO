@@ -52,7 +52,8 @@ public class CreateContactCommandHandler : IRequestHandler<CreateContactCommand,
         entity.Options = request.Options.Select(a => new Option
         {
             Content = a.Content,
-            IsRequired = a.IsRequired
+            IsRequired = a.IsRequired,
+            Order = a.Order
         }).ToList();
 
         entity.OwnedByUserId = _currentUserService.UserId!;
