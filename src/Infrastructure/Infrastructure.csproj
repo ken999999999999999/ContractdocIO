@@ -15,6 +15,7 @@
         <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.5" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.5" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.10" />
     </ItemGroup>
 
     <ItemGroup>
@@ -23,6 +24,7 @@
 
     <ItemGroup>
       <None Remove="Files\Maps\" />
+      <None Remove="Microsoft.AspNetCore.Authentication.Google" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Files\Maps\" />

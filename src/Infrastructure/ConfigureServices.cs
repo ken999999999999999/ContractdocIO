@@ -33,8 +33,7 @@ public static class ConfigureServices
         services.AddScoped<ApplicationDbContextInitialiser>();
 
         services
-            .AddDefaultIdentity<ApplicationUser>()
-            .AddRoles<IdentityRole>()
+            .AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
 
         services.AddIdentityServer(options =>
@@ -42,7 +41,7 @@ public static class ConfigureServices
             options.IssuerUri = configuration["IdentityServer:Issuer"];
         }).AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
              {
-                 options.Clients.AddIdentityServerSPA("contact.io", SPA =>
+                 options.Clients.AddIdentityServerSPA(configuration["IdentityServer:ClientId"], SPA =>
                  {
                      SPA.WithRedirectUri("/silent-callback/")
                      .WithRedirectUri("/login-callback/")
@@ -56,7 +55,13 @@ public static class ConfigureServices
         services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
 
         services.AddAuthentication()
-            .AddIdentityServerJwt();
+            .AddIdentityServerJwt()
+            .AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = configuration["IdentityServer:Google:ClientId"];
+                googleOptions.ClientSecret = configuration["IdentityServer:Google:ClientSecret"];
+
+            });
 
         services.AddAuthorization(options =>
             options.AddPolicy("CanPurge", policy => policy.RequireRole("Administrator")));

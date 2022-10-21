@@ -120,7 +120,7 @@
       "enumNameGeneratorType": null,
       "serviceHost": null,
       "serviceSchemes": null,
-      "output": "wwwroot/api/web-api-client.ts",
+      "output": "contactdocio-web/services/web-api-client.ts",
       "newLineBehavior": "Auto"
     }
   }

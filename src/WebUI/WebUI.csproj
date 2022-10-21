@@ -6,7 +6,7 @@
         <AssemblyName>ContactdocIO.WebUI</AssemblyName>
         <Nullable>enable</Nullable>
         <IsPackable>true</IsPackable>
-        <SpaRoot>ClientApp\</SpaRoot>
+        <SpaRoot>contactdocio-web\</SpaRoot>
         <SpaProxyServerUrl>https://localhost:44447</SpaProxyServerUrl>
         <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
         <ImplicitUsings>enable</ImplicitUsings>
@@ -32,6 +32,7 @@
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
           <PrivateAssets>all</PrivateAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.10" />
     </ItemGroup>
 
     <ItemGroup>
@@ -39,6 +40,7 @@
         <Content Remove="$(SpaRoot)**" />
         <None Remove="$(SpaRoot)**" />
         <None Remove="Microsoft.EntityFrameworkCore.Design" />
+        <None Remove="Microsoft.AspNetCore.Authentication.Google" />
     </ItemGroup>
 
     <PropertyGroup>
@@ -56,7 +58,7 @@
         </Exec>
         <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
         <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
-         <!--  <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />-->
+         <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
     </Target>   
 
  
