@@ -237,3 +237,5 @@ _Pvt_Extensions
 /.mfractor
 src/WebUI/ClientApp/package-lock.json
 src/WebUI/appsettings.Development.json
+
+src/WebUI/wwwroot/api/
