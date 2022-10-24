@@ -1,4 +1,4 @@
-import GoogleProvider from 'next-auth/providers/google';
+import IdentityServer4Provider from 'next-auth/providers/identity-server4';
 import type { Session } from 'next-auth';
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import { JWT } from 'next-auth/jwt';
@@ -18,9 +18,9 @@ export const authOptions: NextAuthOptions = {
     }
   },
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET
+    IdentityServer4Provider({
+      issuer: process.env.IdentityServer4_Issuer,
+      clientId: process.env.IdentityServer4_CLIENT_ID
     })
   ]
 };

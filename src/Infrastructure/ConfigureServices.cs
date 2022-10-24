@@ -49,7 +49,8 @@ public static class ConfigureServices
         services.AddIdentityServer(options =>
         {
             options.IssuerUri = configuration["IdentityServer:Issuer"];
-        }).AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
+        }).AddDeveloperSigningCredential()
+        .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
              {
                  options.Clients.AddIdentityServerSPA(configuration["IdentityServer:ClientId"], SPA =>
                  {
