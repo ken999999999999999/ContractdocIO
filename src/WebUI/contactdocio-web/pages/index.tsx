@@ -7,7 +7,7 @@ const Home: NextPage = (): JSX.Element => {
 
   return (
     <>
-      Signed in {session} <br />
+      Signed in {session.accessToken} <br />
       <button onClick={() => signOut()}>Sign out</button>
     </>
   );

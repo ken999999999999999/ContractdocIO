@@ -33,7 +33,17 @@ public static class ConfigureServices
         services.AddScoped<ApplicationDbContextInitialiser>();
 
         services
-            .AddIdentity<ApplicationUser, IdentityRole>()
+            .AddDefaultIdentity<ApplicationUser>(options =>
+            {
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireUppercase = true;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+
+            })
+            .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
 
         services.AddIdentityServer(options =>
@@ -60,7 +70,7 @@ public static class ConfigureServices
             {
                 googleOptions.ClientId = configuration["IdentityServer:Google:ClientId"];
                 googleOptions.ClientSecret = configuration["IdentityServer:Google:ClientSecret"];
-
+                googleOptions.SaveTokens = true;
             });
 
         services.AddAuthorization(options =>

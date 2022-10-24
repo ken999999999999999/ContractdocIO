@@ -6,7 +6,14 @@ import { JWT } from 'next-auth/jwt';
 export const authOptions: NextAuthOptions = {
   secret: process.env.SECRET,
   callbacks: {
-    session({ session, token }: { session: Session; token: JWT }) {
+    async jwt({ account, token }) {
+      if (account) {
+        token.accessToken = account.access_token;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      session.accessToken = token.accessToken;
       return session; // The return type will match the one returned in `useSession()`
     }
   },
