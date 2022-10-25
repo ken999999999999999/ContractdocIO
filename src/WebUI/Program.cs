@@ -53,6 +53,15 @@ app.MapRazorPages();
 
 app.MapFallbackToFile("index.html"); ;
 
+app.UseSpa(spa =>
+{
+    spa.Options.SourcePath = "contactdocio-web";
+    if (app.Environment.IsDevelopment())
+    {
+        spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
+    }
+});
+
 app.Run();
 
 // Make the implicit Program class public so test projects can access it

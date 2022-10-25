@@ -7,7 +7,7 @@
 		<Nullable>enable</Nullable>
 		<IsPackable>true</IsPackable>
 		<SpaRoot>contactdocio-web\</SpaRoot>
-		<SpaProxyServerUrl>http://localhost:3000</SpaProxyServerUrl>
+        <!-- <SpaProxyServerUrl>http://localhost:3000</SpaProxyServerUrl> -->
 		<!-- <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand> -->
 		<ImplicitUsings>enable</ImplicitUsings>
 		<UserSecretsId>efad71c6-743c-4b87-9de8-f26d77146f6d</UserSecretsId>
@@ -21,6 +21,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.10" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.10" />
 		<PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.5" />
+		<PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="6.0.10" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10">
 			<PrivateAssets>all</PrivateAssets>
@@ -47,15 +48,8 @@
 		<None Remove="Microsoft.AspNetCore.Authentication.Google" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="contactdocio-web\pages\api\hello.ts" />
-		<None Include="contactdocio-web\pages\index.tsx" />
-		<None Include="contactdocio-web\pages\_app.tsx" />
-		<None Include="contactdocio-web\styles\globals.css" />
-		<None Include="contactdocio-web\styles\Home.module.css" />
 		<None Include="contactdocio-web\.eslintrc.json" />
 		<None Include="contactdocio-web\.gitignore" />
-		<None Include="contactdocio-web\next-env.d.ts" />
-		<None Include="contactdocio-web\next.config.js" />
 		<None Include="contactdocio-web\package-lock.json" />
 		<None Include="contactdocio-web\package.json" />
 		<None Include="contactdocio-web\README.md" />
@@ -83,7 +77,7 @@
 		<!-- Include the newly-built files in the publish output -->
 		<ItemGroup>
 			<DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
-			<ResolvedFileToPublish Include="@(DistFiles-&gt;'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+			<ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
 				<RelativePath>wwwroot\%(RecursiveDir)%(FileName)%(Extension)</RelativePath>
 				<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 				<ExcludeFromSingleFile>true</ExcludeFromSingleFile>

@@ -50,12 +50,11 @@ public static class ConfigureServices
         .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
              {
 
-                 options.Clients.AddSPA(configuration["IdentityServer:ClientId"], SPA =>
+                 options.Clients.AddIdentityServerSPA(configuration["IdentityServer:ClientId"], SPA =>
                  {
                      SPA
-                     .WithoutClientSecrets()
-                     .WithRedirectUri("http://localhost:3000/api/auth/callback/identity-server4")
-                     .WithLogoutRedirectUri("http://localhost:3000/api/auth/callback/identity-server4")
+                     .WithRedirectUri("/api/auth/callback/identity-server4")
+                     .WithLogoutRedirectUri("/api/auth/callback/identity-server4")
                      ;
                  });
              });
