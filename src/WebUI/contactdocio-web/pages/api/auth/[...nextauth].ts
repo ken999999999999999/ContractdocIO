@@ -1,7 +1,5 @@
 import IdentityServer4Provider from 'next-auth/providers/identity-server4';
-import type { Session } from 'next-auth';
 import NextAuth, { NextAuthOptions } from 'next-auth';
-import { JWT } from 'next-auth/jwt';
 
 export const authOptions: NextAuthOptions = {
   secret: process.env.SECRET,
@@ -20,7 +18,11 @@ export const authOptions: NextAuthOptions = {
   providers: [
     IdentityServer4Provider({
       issuer: process.env.IdentityServer4_Issuer,
-      clientId: process.env.IdentityServer4_CLIENT_ID
+      clientId: process.env.IdentityServer4_CLIENT_ID,
+      clientSecret: process.env.IdentityServer4_CLIENT_SECRET,
+      authorization: {
+        params: { scope: 'openid profile ContactdocIO.WebUIAPI' }
+      }
     })
   ]
 };

@@ -46,17 +46,17 @@ public static class ConfigureServices
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
 
-        services.AddIdentityServer(options =>
-        {
-            options.IssuerUri = configuration["IdentityServer:Issuer"];
-        }).AddDeveloperSigningCredential()
+        services.AddIdentityServer().AddDeveloperSigningCredential()
         .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
              {
-                 options.Clients.AddIdentityServerSPA(configuration["IdentityServer:ClientId"], SPA =>
+
+                 options.Clients.AddSPA(configuration["IdentityServer:ClientId"], SPA =>
                  {
-                     SPA.WithRedirectUri("/silent-callback/")
-                     .WithRedirectUri("/login-callback/")
-                     .WithLogoutRedirectUri("/logout-callback/");
+                     SPA
+                     .WithoutClientSecrets()
+                     .WithRedirectUri("http://localhost:3000/api/auth/callback/identity-server4")
+                     .WithLogoutRedirectUri("http://localhost:3000/api/auth/callback/identity-server4")
+                     ;
                  });
              });
 
