@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useAuth } from "react-oidc-context";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+  const auth = useAuth();
+
+  switch (auth.activeNavigator) {
+    case "signinSilent":
+      return <div>Signing you in...</div>;
+    case "signoutRedirect":
+      return <div>Signing you out...</div>;
+  }
+
+  if (auth.isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (auth.error) {
+    return <div>Oops... {auth.error.message}</div>;
+  }
+
+  if (auth.isAuthenticated) {
+    return (
+      <div>
+        Hello {auth.user?.profile.sub}
+        <br />
+        Assess Token:{auth.user?.access_token}
+        <button onClick={() => auth.removeUser()}>Log out</button>
+      </div>
+    );
+  }
+
+  return <button onClick={() => auth.signinRedirect()}>Log in</button>;
+};
 
 export default App;
