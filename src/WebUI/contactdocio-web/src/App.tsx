@@ -1,12 +1,13 @@
 import { Layout } from '@/layout';
+import { AuthProvider } from '@/auth';
 
 const App = () => {
   return (
-    // <AuthProvider>
-    <Layout>
-      <></>
-    </Layout>
-    //</AuthProvider>
+    <AuthProvider>
+      <Layout>
+        <></>
+      </Layout>
+    </AuthProvider>
   );
 };
 
