@@ -4,6 +4,7 @@ using ContactdocIO.WebUI.Filters;
 using ContactdocIO.WebUI.Services;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using NSwag;
 using NSwag.Generation.Processors.Security;
 
@@ -31,6 +32,8 @@ public static class ConfigureServices
         // Customise default API behaviour
         services.Configure<ApiBehaviorOptions>(options =>
             options.SuppressModelStateInvalidFilter = true);
+        services.AddSpaStaticFiles(configuration =>
+     configuration.RootPath = "contactdocio-web/public");
 
         services.AddOpenApiDocument(configure =>
         {

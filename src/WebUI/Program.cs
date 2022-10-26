@@ -45,19 +45,22 @@ app.UseAuthentication();
 app.UseIdentityServer();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
-
-app.MapRazorPages();
-
-app.MapFallbackToFile("index.html"); ;
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller}/{action=Index}/{id?}");
+    endpoints.MapRazorPages();
+});
 
 app.UseSpa(spa =>
 {
-    spa.Options.SourcePath = "contactdocio-web";
+    // To learn more about options for serving an Angular SPA from ASP.NET Core,
+    // see https://go.microsoft.com/fwlink/?linkid=864501
+    //spa.Options.SourcePath = "contactdocio-web";
     if (app.Environment.IsDevelopment())
     {
+        //spa.UseAngularCliServer(npmScript: "start");
         spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
     }
 });

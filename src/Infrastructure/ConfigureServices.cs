@@ -5,6 +5,7 @@ using ContactdocIO.Infrastructure.Persistence;
 using ContactdocIO.Infrastructure.Persistence.Interceptors;
 using ContactdocIO.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 
@@ -46,18 +47,8 @@ public static class ConfigureServices
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
 
-        services.AddIdentityServer().AddDeveloperSigningCredential()
-        .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
-             {
-
-                 options.Clients.AddIdentityServerSPA(configuration["IdentityServer:ClientId"], SPA =>
-                 {
-                     SPA
-                     .WithRedirectUri("/api/auth/callback/identity-server4")
-                     .WithLogoutRedirectUri("/api/auth/callback/identity-server4")
-                     ;
-                 });
-             });
+        services.AddIdentityServer()
+        .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
 
         services.AddTransient<IDateTime, DateTimeService>();
