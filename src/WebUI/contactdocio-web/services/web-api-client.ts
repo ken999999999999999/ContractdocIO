@@ -162,19 +162,18 @@ export interface OptionInputDto {
     order?: number;
 }
 
-export interface BaseEntity {
+export interface BaseEntityDto {
     id?: number;
-    domainEvents?: BaseEvent[];
 }
 
-export interface BaseAuditableEntity extends BaseEntity {
+export interface BaseAuditableEntityDto extends BaseEntityDto {
     created?: Date;
     createdBy?: string | undefined;
     lastModified?: Date | undefined;
     lastModifiedBy?: string | undefined;
 }
 
-export interface ContactDto extends BaseAuditableEntity {
+export interface ContactDto extends BaseAuditableEntityDto {
     options?: OptionDto[];
     content?: string;
     type?: string;
@@ -188,9 +187,6 @@ export interface OptionDto {
     order?: number;
 }
 
-export interface BaseEvent {
-}
-
 export interface PaginatedListOfContactBriefDto {
     items?: ContactBriefDto[];
     pageNumber?: number;
@@ -200,7 +196,7 @@ export interface PaginatedListOfContactBriefDto {
     hasNextPage?: boolean;
 }
 
-export interface ContactBriefDto extends BaseAuditableEntity {
+export interface ContactBriefDto extends BaseAuditableEntityDto {
     type?: string;
     title?: string;
     version?: number;

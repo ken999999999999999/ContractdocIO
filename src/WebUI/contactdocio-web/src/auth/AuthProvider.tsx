@@ -1,23 +1,29 @@
-import {
-  AuthProvider as ReactAuthProvider,
-  AuthProviderProps,
-} from "react-oidc-context";
-
+import { useAuth } from 'react-oidc-context';
 interface IAuthProvider {
   children: JSX.Element;
 }
 
-const oidConfig: AuthProviderProps = {
-  authority: process.env.REACT_APP_AUTH_URL,
-  client_id: process.env.REACT_APP_CLIENT_ID,
-  redirect_uri: window.location.origin + "/authentication/login-callback",
-  metadataUrl: `${process.env.REACT_APP_AUTH_URL}/.well-known/openid-configuration`,
-  scope: "openid profile ContactdocIO.WebUIAPI",
-  post_logout_redirect_uri: window.location.origin,
-};
+export default ({ children }: IAuthProvider): JSX.Element => {
+  const auth = useAuth();
 
-const AuthProvider = ({ children }: IAuthProvider): JSX.Element => {
-  return <ReactAuthProvider {...oidConfig}>{children}</ReactAuthProvider>;
-};
+  switch (auth.activeNavigator) {
+    case 'signinSilent':
+      return <div>Signing you in...</div>;
+    case 'signoutRedirect':
+      return <div>Signing you out...</div>;
+  }
 
-export default AuthProvider;
+  if (auth.isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (auth.error) {
+    return <div>Oops... {auth.error.message}</div>;
+  }
+  if (!auth.isAuthenticated)
+    auth.signinRedirect({
+      state: { returnUrl: encodeURIComponent(window.location.pathname) }
+    });
+
+  return children;
+};

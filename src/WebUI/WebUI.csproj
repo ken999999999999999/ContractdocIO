@@ -8,7 +8,7 @@
 		<IsPackable>true</IsPackable>
 		<SpaRoot>contactdocio-web\</SpaRoot>
         <!-- <SpaProxyServerUrl>http://localhost:3000</SpaProxyServerUrl> -->
-		<!-- <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand> -->
+	    <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<UserSecretsId>efad71c6-743c-4b87-9de8-f26d77146f6d</UserSecretsId>
 	</PropertyGroup>
