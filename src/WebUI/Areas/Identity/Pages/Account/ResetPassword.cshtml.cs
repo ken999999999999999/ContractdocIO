@@ -16,9 +16,9 @@ namespace ContactdocIO.WebUI.Areas.Identity.Pages.Account
 {
     public class ResetPasswordModel : PageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<IOUser> _userManager;
 
-        public ResetPasswordModel(UserManager<ApplicationUser> userManager)
+        public ResetPasswordModel(UserManager<IOUser> userManager)
         {
             _userManager = userManager;
         }

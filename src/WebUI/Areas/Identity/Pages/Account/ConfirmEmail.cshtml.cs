@@ -16,9 +16,9 @@ namespace ContactdocIO.WebUI.Areas.Identity.Pages.Account
 {
     public class ConfirmEmailModel : PageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<IOUser> _userManager;
 
-        public ConfirmEmailModel(UserManager<ApplicationUser> userManager)
+        public ConfirmEmailModel(UserManager<IOUser> userManager)
         {
             _userManager = userManager;
         }

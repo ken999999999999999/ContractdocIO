@@ -68,21 +68,6 @@ namespace ContactdocIO.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "IOUsers",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_IOUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Keys",
                 columns: table => new
                 {
@@ -247,9 +232,9 @@ namespace ContactdocIO.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Contacts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Contacts_IOUsers_OwnedByUserId",
+                        name: "FK_Contacts_AspNetUsers_OwnedByUserId",
                         column: x => x.OwnedByUserId,
-                        principalTable: "IOUsers",
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -338,18 +323,6 @@ namespace ContactdocIO.Infrastructure.Migrations
                 column: "Expiration");
 
             migrationBuilder.CreateIndex(
-                name: "IX_IOUsers_Email",
-                table: "IOUsers",
-                column: "Email",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_IOUsers_UserName",
-                table: "IOUsers",
-                column: "UserName",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Keys_Use",
                 table: "Keys",
                 column: "Use");
@@ -413,13 +386,10 @@ namespace ContactdocIO.Infrastructure.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "Contacts");
 
             migrationBuilder.DropTable(
-                name: "IOUsers");
+                name: "AspNetUsers");
         }
     }
 }

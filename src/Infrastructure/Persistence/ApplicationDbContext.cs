@@ -1,8 +1,5 @@
 ﻿using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
 using ContactdocIO.Application.Common.Interfaces;
-using ContactdocIO.Infrastructure.Identity;
 using ContactdocIO.Infrastructure.Persistence.Interceptors;
 using Duende.IdentityServer.EntityFramework.Options;
 using MediatR;
@@ -11,7 +8,7 @@ using Microsoft.Extensions.Options;
 
 namespace ContactdocIO.Infrastructure.Persistence;
 
-public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, IApplicationDbContext
+public class ApplicationDbContext : ApiAuthorizationDbContext<IOUser>, IApplicationDbContext
 {
     private readonly IMediator _mediator;
     private readonly AuditableEntitySaveChangesInterceptor _auditableEntitySaveChangesInterceptor;
@@ -31,7 +28,7 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
 
     public DbSet<Option> Options => Set<Option>();
 
-    public DbSet<IOUser> IOUsers => Set<IOUser>();
+    public DbSet<IOUser> IOUsers => base.Set<IOUser>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

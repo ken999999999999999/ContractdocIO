@@ -1,19 +1,8 @@
-﻿namespace ContactdocIO.Domain.Entities;
+﻿using Microsoft.AspNetCore.Identity;
 
-public class IOUser
+namespace ContactdocIO.Domain.Entities;
+
+public class IOUser : IdentityUser
 {
-
-    public string Id { get; set; } = default!;
-
-    public string Name { get; set; } = default!;
-
-    public string UserName { get; set; } = default!;
-
-    public string Email { get; set; } = default!;
-
     public IList<Contact> Contacts = new List<Contact>();
-
-    public DateTime Created { get; set; } = DateTime.Now;
-
 }
-

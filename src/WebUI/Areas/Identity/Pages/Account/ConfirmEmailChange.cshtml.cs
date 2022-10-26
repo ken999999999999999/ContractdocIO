@@ -15,10 +15,10 @@ namespace ContactdocIO.WebUI.Areas.Identity.Pages.Account
 {
     public class ConfirmEmailChangeModel : PageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<IOUser> _userManager;
+        private readonly SignInManager<IOUser> _signInManager;
 
-        public ConfirmEmailChangeModel(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public ConfirmEmailChangeModel(UserManager<IOUser> userManager, SignInManager<IOUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;

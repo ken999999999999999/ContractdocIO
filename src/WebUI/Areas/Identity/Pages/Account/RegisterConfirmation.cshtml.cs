@@ -17,10 +17,10 @@ namespace ContactdocIO.WebUI.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterConfirmationModel : PageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<IOUser> _userManager;
         private readonly IEmailSender _sender;
 
-        public RegisterConfirmationModel(UserManager<ApplicationUser> userManager, IEmailSender sender)
+        public RegisterConfirmationModel(UserManager<IOUser> userManager, IEmailSender sender)
         {
             _userManager = userManager;
             _sender = sender;

@@ -13,12 +13,12 @@ namespace ContactdocIO.WebUI.Areas.Identity.Pages.Account.Manage
 {
     public class TwoFactorAuthenticationModel : PageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<IOUser> _userManager;
+        private readonly SignInManager<IOUser> _signInManager;
         private readonly ILogger<TwoFactorAuthenticationModel> _logger;
 
         public TwoFactorAuthenticationModel(
-            UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ILogger<TwoFactorAuthenticationModel> logger)
+            UserManager<IOUser> userManager, SignInManager<IOUser> signInManager, ILogger<TwoFactorAuthenticationModel> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;

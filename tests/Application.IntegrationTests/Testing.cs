@@ -1,4 +1,5 @@
-﻿using ContactdocIO.Infrastructure.Identity;
+﻿using ContactdocIO.Domain.Entities;
+using ContactdocIO.Infrastructure.Identity;
 using ContactdocIO.Infrastructure.Persistence;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -61,9 +62,9 @@ public partial class Testing
     {
         using var scope = _scopeFactory.CreateScope();
 
-        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IOUser>>();
 
-        var user = new ApplicationUser { UserName = userName, Email = userName };
+        var user = new IOUser { UserName = userName, Email = userName };
 
         var result = await userManager.CreateAsync(user, password);
 

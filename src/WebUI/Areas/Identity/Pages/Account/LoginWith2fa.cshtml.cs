@@ -16,13 +16,13 @@ namespace ContactdocIO.WebUI.Areas.Identity.Pages.Account
 {
     public class LoginWith2faModel : PageModel
     {
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<IOUser> _signInManager;
+        private readonly UserManager<IOUser> _userManager;
         private readonly ILogger<LoginWith2faModel> _logger;
 
         public LoginWith2faModel(
-            SignInManager<ApplicationUser> signInManager,
-            UserManager<ApplicationUser> userManager,
+            SignInManager<IOUser> signInManager,
+            UserManager<IOUser> userManager,
             ILogger<LoginWith2faModel> logger)
         {
             _signInManager = signInManager;

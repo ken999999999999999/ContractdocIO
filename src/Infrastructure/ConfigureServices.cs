@@ -34,7 +34,7 @@ public static class ConfigureServices
         services.AddScoped<ApplicationDbContextInitialiser>();
 
         services
-            .AddDefaultIdentity<ApplicationUser>(options =>
+            .AddDefaultIdentity<IOUser>(options =>
             {
                 options.Password.RequireNonAlphanumeric = true;
                 options.Password.RequiredLength = 8;
@@ -48,7 +48,7 @@ public static class ConfigureServices
             .AddEntityFrameworkStores<ApplicationDbContext>();
 
         services.AddIdentityServer()
-        .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+        .AddApiAuthorization<IOUser, ApplicationDbContext>();
 
 
         services.AddTransient<IDateTime, DateTimeService>();
