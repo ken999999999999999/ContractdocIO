@@ -1,11 +1,11 @@
-﻿using ContactdocIO.Domain.Entities;
+﻿using ContractdocIO.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace ContactdocIO.Application.Common.Interfaces;
+namespace ContractdocIO.Application.Common.Interfaces;
 
 public interface IApplicationDbContext
 {
-    DbSet<Contact> Contacts { get; }
+    DbSet<Contract> Contracts { get; }
 
     DbSet<Option> Options { get; }
 

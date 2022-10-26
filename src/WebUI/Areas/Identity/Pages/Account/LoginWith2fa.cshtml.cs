@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
-namespace ContactdocIO.WebUI.Areas.Identity.Pages.Account
+namespace ContractdocIO.WebUI.Areas.Identity.Pages.Account
 {
     public class LoginWith2faModel : PageModel
     {

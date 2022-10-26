@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace ContactdocIO.WebUI.AcceptanceTests.Features
+namespace ContractdocIO.WebUI.AcceptanceTests.Features
 {
     using TechTalk.SpecFlow;
     using System;

@@ -1,4 +1,4 @@
-﻿namespace ContactdocIO.Application.Common.Dto;
+﻿namespace ContractdocIO.Application.Common.Dto;
 public class BaseAuditableEntityDto : BaseEntityDto
 {
     public DateTime Created { get; set; }

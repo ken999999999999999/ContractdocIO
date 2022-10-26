@@ -1,4 +1,4 @@
-﻿namespace ContactdocIO.Domain.Enums;
+﻿namespace ContractdocIO.Domain.Enums;
 
 public enum PriorityLevel
 {

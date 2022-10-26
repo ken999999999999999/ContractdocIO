@@ -1,8 +1,8 @@
-﻿using ContactdocIO.Application.Common.Interfaces;
+﻿using ContractdocIO.Application.Common.Interfaces;
 using Moq;
 using NUnit.Framework;
 
-namespace ContactdocIO.Application.UnitTests.Common.Behaviours;
+namespace ContractdocIO.Application.UnitTests.Common.Behaviours;
 
 public class RequestLoggerTests
 {

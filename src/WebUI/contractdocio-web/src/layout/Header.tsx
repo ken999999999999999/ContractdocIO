@@ -10,7 +10,7 @@ export default (): JSX.Element => {
       <AppBar>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Contact.IO
+            Contract.IO
           </Typography>
           <Button
             startIcon={<LogoutIcon />}

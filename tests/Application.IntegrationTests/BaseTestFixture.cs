@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace ContactdocIO.Application.IntegrationTests;
+namespace ContractdocIO.Application.IntegrationTests;
 
 using static Testing;
 

@@ -1,4 +1,4 @@
-﻿namespace ContactdocIO.Application.Common.Exceptions;
+﻿namespace ContractdocIO.Application.Common.Exceptions;
 
 public class ForbiddenAccessException : Exception
 {

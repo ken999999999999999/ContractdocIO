@@ -1,9 +1,9 @@
-﻿using ContactdocIO.Domain.Exceptions;
-using ContactdocIO.Domain.ValueObjects;
+﻿using ContractdocIO.Domain.Exceptions;
+using ContractdocIO.Domain.ValueObjects;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace ContactdocIO.Domain.UnitTests.ValueObjects;
+namespace ContractdocIO.Domain.UnitTests.ValueObjects;
 
 public class ColourTests
 {

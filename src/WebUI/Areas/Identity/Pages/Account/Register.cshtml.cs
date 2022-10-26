@@ -19,7 +19,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 
-namespace ContactdocIO.WebUI.Areas.Identity.Pages.Account
+namespace ContractdocIO.WebUI.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {

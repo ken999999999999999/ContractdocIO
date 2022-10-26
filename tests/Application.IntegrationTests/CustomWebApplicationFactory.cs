@@ -1,5 +1,5 @@
-﻿using ContactdocIO.Application.Common.Interfaces;
-using ContactdocIO.Infrastructure.Persistence;
+﻿using ContractdocIO.Application.Common.Interfaces;
+using ContractdocIO.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 
-namespace ContactdocIO.Application.IntegrationTests;
+namespace ContractdocIO.Application.IntegrationTests;
 
 using static Testing;
 

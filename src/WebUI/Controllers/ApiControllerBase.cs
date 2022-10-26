@@ -2,7 +2,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace ContactdocIO.WebUI.Controllers;
+namespace ContractdocIO.WebUI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

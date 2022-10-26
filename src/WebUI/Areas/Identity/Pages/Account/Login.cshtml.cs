@@ -14,9 +14,9 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using ContactdocIO.Infrastructure.Identity;
+using ContractdocIO.Infrastructure.Identity;
 
-namespace ContactdocIO.WebUI.Areas.Identity.Pages.Account
+namespace ContractdocIO.WebUI.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {

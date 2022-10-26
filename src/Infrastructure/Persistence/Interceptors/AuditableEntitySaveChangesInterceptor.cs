@@ -1,10 +1,10 @@
-﻿using ContactdocIO.Application.Common.Interfaces;
-using ContactdocIO.Domain.Common;
+﻿using ContractdocIO.Application.Common.Interfaces;
+using ContractdocIO.Domain.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
-namespace ContactdocIO.Infrastructure.Persistence.Interceptors;
+namespace ContractdocIO.Infrastructure.Persistence.Interceptors;
 
 public class AuditableEntitySaveChangesInterceptor : SaveChangesInterceptor
 {

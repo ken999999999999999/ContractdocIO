@@ -1,6 +1,6 @@
-﻿using ContactdocIO.Application.Common.Interfaces;
+﻿using ContractdocIO.Application.Common.Interfaces;
 
-namespace ContactdocIO.Infrastructure.Files;
+namespace ContractdocIO.Infrastructure.Files;
 
 public class CsvFileBuilder : ICsvFileBuilder
 {

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace ContactdocIO.Domain.Common;
+namespace ContractdocIO.Domain.Common;
 
 public abstract class BaseEvent : INotification
 {

@@ -1,4 +1,4 @@
-﻿namespace ContactdocIO.WebUI.AcceptanceTests.Pages;
+﻿namespace ContractdocIO.WebUI.AcceptanceTests.Pages;
 
 public abstract class BasePage
 {

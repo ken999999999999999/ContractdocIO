@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace ContactdocIO.Application.Common.Mappings;
+namespace ContractdocIO.Application.Common.Mappings;
 
 public interface IMapFrom<T>
 {

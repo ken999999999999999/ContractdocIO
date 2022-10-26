@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ContactdocIO.Infrastructure.Migrations
+namespace ContractdocIO.Infrastructure.Migrations
 {
     public partial class Init : Migration
     {
@@ -212,12 +212,12 @@ namespace ContactdocIO.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Contacts",
+                name: "Contracts",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ContactGroupId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ContractGroupId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -230,9 +230,9 @@ namespace ContactdocIO.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Contacts", x => x.Id);
+                    table.PrimaryKey("PK_Contracts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Contacts_AspNetUsers_OwnedByUserId",
+                        name: "FK_Contracts_AspNetUsers_OwnedByUserId",
                         column: x => x.OwnedByUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -245,7 +245,7 @@ namespace ContactdocIO.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ContactId = table.Column<int>(type: "int", nullable: false),
+                    ContractId = table.Column<int>(type: "int", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsRequired = table.Column<bool>(type: "bit", nullable: false),
                     Order = table.Column<int>(type: "int", nullable: false)
@@ -254,9 +254,9 @@ namespace ContactdocIO.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Options", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Options_Contacts_ContactId",
-                        column: x => x.ContactId,
-                        principalTable: "Contacts",
+                        name: "FK_Options_Contracts_ContractId",
+                        column: x => x.ContractId,
+                        principalTable: "Contracts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -301,14 +301,14 @@ namespace ContactdocIO.Infrastructure.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Contacts_ContactGroupId_Version",
-                table: "Contacts",
-                columns: new[] { "ContactGroupId", "Version" },
+                name: "IX_Contracts_ContractGroupId_Version",
+                table: "Contracts",
+                columns: new[] { "ContractGroupId", "Version" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Contacts_OwnedByUserId",
-                table: "Contacts",
+                name: "IX_Contracts_OwnedByUserId",
+                table: "Contracts",
                 column: "OwnedByUserId");
 
             migrationBuilder.CreateIndex(
@@ -328,9 +328,9 @@ namespace ContactdocIO.Infrastructure.Migrations
                 column: "Use");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Options_ContactId",
+                name: "IX_Options_ContractId",
                 table: "Options",
-                column: "ContactId");
+                column: "ContractId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersistedGrants_ConsumedTime",
@@ -386,7 +386,7 @@ namespace ContactdocIO.Infrastructure.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Contacts");
+                name: "Contracts");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

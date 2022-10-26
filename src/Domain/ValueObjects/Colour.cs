@@ -1,4 +1,4 @@
-﻿namespace ContactdocIO.Domain.ValueObjects;
+﻿namespace ContractdocIO.Domain.ValueObjects;
 
 public class Colour : ValueObject
 {

@@ -1,4 +1,4 @@
-using ContactdocIO.Infrastructure.Persistence;
+using ContractdocIO.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 

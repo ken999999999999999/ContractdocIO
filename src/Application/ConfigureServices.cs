@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using ContactdocIO.Application.Common.Behaviours;
+using ContractdocIO.Application.Common.Behaviours;
 using FluentValidation;
 using MediatR;
 

@@ -1,4 +1,4 @@
-﻿namespace ContactdocIO.Domain.Exceptions;
+﻿namespace ContractdocIO.Domain.Exceptions;
 
 public class UnsupportedColourException : Exception
 {

@@ -2,8 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <RootNamespace>ContactdocIO.Application.UnitTests</RootNamespace>
-        <AssemblyName>ContactdocIO.Application.UnitTests</AssemblyName>
+        <RootNamespace>ContractdocIO.Application.UnitTests</RootNamespace>
+        <AssemblyName>ContractdocIO.Application.UnitTests</AssemblyName>
 
         <IsPackable>false</IsPackable>
         <ImplicitUsings>enable</ImplicitUsings>

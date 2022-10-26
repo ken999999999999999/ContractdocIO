@@ -1,9 +1,9 @@
-﻿using ContactdocIO.Application.Common.Exceptions;
+﻿using ContractdocIO.Application.Common.Exceptions;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace ContactdocIO.WebUI.Filters;
+namespace ContractdocIO.WebUI.Filters;
 
 public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
 {

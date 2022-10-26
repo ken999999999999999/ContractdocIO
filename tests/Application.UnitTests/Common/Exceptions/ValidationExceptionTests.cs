@@ -1,9 +1,9 @@
-﻿using ContactdocIO.Application.Common.Exceptions;
+﻿using ContractdocIO.Application.Common.Exceptions;
 using FluentAssertions;
 using FluentValidation.Results;
 using NUnit.Framework;
 
-namespace ContactdocIO.Application.UnitTests.Common.Exceptions;
+namespace ContractdocIO.Application.UnitTests.Common.Exceptions;
 
 public class ValidationExceptionTests
 {

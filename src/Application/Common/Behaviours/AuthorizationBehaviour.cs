@@ -1,10 +1,10 @@
 ﻿using System.Reflection;
-using ContactdocIO.Application.Common.Exceptions;
-using ContactdocIO.Application.Common.Interfaces;
-using ContactdocIO.Application.Common.Security;
+using ContractdocIO.Application.Common.Exceptions;
+using ContractdocIO.Application.Common.Interfaces;
+using ContractdocIO.Application.Common.Security;
 using MediatR;
 
-namespace ContactdocIO.Application.Common.Behaviours;
+namespace ContractdocIO.Application.Common.Behaviours;
 
 public class AuthorizationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
 {

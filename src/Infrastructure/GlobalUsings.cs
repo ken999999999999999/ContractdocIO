@@ -1,2 +1,2 @@
-﻿global using ContactdocIO.Domain.Entities;
+﻿global using ContractdocIO.Domain.Entities;
 global using Microsoft.EntityFrameworkCore;

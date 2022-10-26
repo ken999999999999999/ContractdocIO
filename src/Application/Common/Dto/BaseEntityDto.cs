@@ -1,4 +1,4 @@
-﻿namespace ContactdocIO.Application.Common.Dto;
+﻿namespace ContractdocIO.Application.Common.Dto;
 public class BaseEntityDto
 {
     public int Id { get; set; }

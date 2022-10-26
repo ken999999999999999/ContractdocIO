@@ -1,4 +1,4 @@
-﻿namespace ContactdocIO.Application.Common.Interfaces;
+﻿namespace ContractdocIO.Application.Common.Interfaces;
 
 public interface IOrder
 {

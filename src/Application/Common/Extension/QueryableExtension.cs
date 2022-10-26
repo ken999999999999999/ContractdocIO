@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace ContactdocIO.Application.Common.Extension;
+namespace ContractdocIO.Application.Common.Extension;
 
 public static class QueryableExtension
 {

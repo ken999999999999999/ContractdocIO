@@ -1,6 +1,6 @@
-﻿using ContactdocIO.Domain.Entities;
-using ContactdocIO.Infrastructure.Identity;
-using ContactdocIO.Infrastructure.Persistence;
+﻿using ContractdocIO.Domain.Entities;
+using ContractdocIO.Infrastructure.Identity;
+using ContractdocIO.Infrastructure.Persistence;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using Respawn;
 
-namespace ContactdocIO.Application.IntegrationTests;
+namespace ContractdocIO.Application.IntegrationTests;
 
 [SetUpFixture]
 public partial class Testing

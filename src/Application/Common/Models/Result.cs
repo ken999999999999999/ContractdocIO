@@ -1,4 +1,4 @@
-﻿namespace ContactdocIO.Application.Common.Models;
+﻿namespace ContractdocIO.Application.Common.Models;
 
 public class Result
 {

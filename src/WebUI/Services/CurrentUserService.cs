@@ -1,8 +1,8 @@
 ﻿using System.Security.Claims;
 
-using ContactdocIO.Application.Common.Interfaces;
+using ContractdocIO.Application.Common.Interfaces;
 
-namespace ContactdocIO.WebUI.Services;
+namespace ContractdocIO.WebUI.Services;
 
 public class CurrentUserService : ICurrentUserService
 {

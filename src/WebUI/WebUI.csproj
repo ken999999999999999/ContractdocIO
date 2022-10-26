@@ -2,11 +2,11 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
-		<RootNamespace>ContactdocIO.WebUI</RootNamespace>
-		<AssemblyName>ContactdocIO.WebUI</AssemblyName>
+		<RootNamespace>ContractdocIO.WebUI</RootNamespace>
+		<AssemblyName>ContractdocIO.WebUI</AssemblyName>
 		<Nullable>enable</Nullable>
 		<IsPackable>true</IsPackable>
-		<SpaRoot>contactdocio-web\</SpaRoot>
+		<SpaRoot>contractdocio-web\</SpaRoot>
         <!-- <SpaProxyServerUrl>http://localhost:3000</SpaProxyServerUrl> -->
 	    <!-- <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand> -->
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -42,18 +42,14 @@
 	</ItemGroup>
 	<ItemGroup>
 		<!-- Don't publish the SPA source files, but do show them in the project files list -->
+		<Compile Remove="contactdocio-web\**" />
 		<Content Remove="$(SpaRoot)**" />
+		<Content Remove="contactdocio-web\**" />
+		<EmbeddedResource Remove="contactdocio-web\**" />
 		<None Remove="$(SpaRoot)**" />
+		<None Remove="contactdocio-web\**" />
 		<None Remove="Microsoft.EntityFrameworkCore.Design" />
 		<None Remove="Microsoft.AspNetCore.Authentication.Google" />
-	</ItemGroup>
-	<ItemGroup>
-		<None Include="contactdocio-web\.eslintrc.json" />
-		<None Include="contactdocio-web\.gitignore" />
-		<None Include="contactdocio-web\package-lock.json" />
-		<None Include="contactdocio-web\package.json" />
-		<None Include="contactdocio-web\README.md" />
-		<None Include="contactdocio-web\tsconfig.json" />
 	</ItemGroup>
 	<PropertyGroup>
 		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>

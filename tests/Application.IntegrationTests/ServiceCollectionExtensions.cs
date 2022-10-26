@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace ContactdocIO.Application.IntegrationTests;
+namespace ContractdocIO.Application.IntegrationTests;
 
 public static class ServiceCollectionExtensions
 {

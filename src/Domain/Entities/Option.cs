@@ -1,10 +1,10 @@
-﻿namespace ContactdocIO.Domain.Entities;
+﻿namespace ContractdocIO.Domain.Entities;
 
 public class Option : BaseEntity
 {
-    public int ContactId { get; set; }
+    public int ContractId { get; set; }
 
-    public Contact Contact { get; set; } = null!;
+    public Contract Contract { get; set; } = null!;
 
     public string Content { get; set; } = default!;
 

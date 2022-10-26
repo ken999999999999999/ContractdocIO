@@ -1,4 +1,4 @@
-﻿using ContactdocIO.Domain.Common;
+﻿using ContractdocIO.Domain.Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace MediatR;

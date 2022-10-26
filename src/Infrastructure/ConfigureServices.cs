@@ -1,9 +1,9 @@
-﻿using ContactdocIO.Application.Common.Interfaces;
-using ContactdocIO.Infrastructure.Files;
-using ContactdocIO.Infrastructure.Identity;
-using ContactdocIO.Infrastructure.Persistence;
-using ContactdocIO.Infrastructure.Persistence.Interceptors;
-using ContactdocIO.Infrastructure.Services;
+﻿using ContractdocIO.Application.Common.Interfaces;
+using ContractdocIO.Infrastructure.Files;
+using ContractdocIO.Infrastructure.Identity;
+using ContractdocIO.Infrastructure.Persistence;
+using ContractdocIO.Infrastructure.Persistence.Interceptors;
+using ContractdocIO.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -20,12 +20,12 @@ public static class ConfigureServices
         if (configuration.GetValue<bool>("UseInMemoryDatabase"))
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseInMemoryDatabase("ContactdocIODb"));
+                options.UseInMemoryDatabase("ContractdocIODb"));
         }
         else
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("ContactdocIOConnection"),
+                options.UseSqlServer(configuration.GetConnectionString("ContractdocIOConnection"),
                     builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         }
 

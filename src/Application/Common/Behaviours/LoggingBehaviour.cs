@@ -1,8 +1,8 @@
-﻿using ContactdocIO.Application.Common.Interfaces;
+﻿using ContractdocIO.Application.Common.Interfaces;
 using MediatR.Pipeline;
 using Microsoft.Extensions.Logging;
 
-namespace ContactdocIO.Application.Common.Behaviours;
+namespace ContractdocIO.Application.Common.Behaviours;
 
 public class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest> where TRequest : notnull
 {
@@ -28,7 +28,7 @@ public class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest> where T
             userName = await _identityService.GetUserNameAsync(userId);
         }
 
-        _logger.LogInformation("ContactdocIO Request: {Name} {@UserId} {@UserName} {@Request}",
+        _logger.LogInformation("ContractdocIO Request: {Name} {@UserId} {@UserName} {@Request}",
             requestName, userId, userName, request);
     }
 }

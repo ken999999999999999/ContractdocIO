@@ -1,9 +1,9 @@
-﻿using ContactdocIO.Application.Common.Interfaces;
-using ContactdocIO.Application.Common.Models;
+﻿using ContractdocIO.Application.Common.Interfaces;
+using ContractdocIO.Application.Common.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
-namespace ContactdocIO.Infrastructure.Identity;
+namespace ContractdocIO.Infrastructure.Identity;
 
 public class IdentityService : IIdentityService
 {

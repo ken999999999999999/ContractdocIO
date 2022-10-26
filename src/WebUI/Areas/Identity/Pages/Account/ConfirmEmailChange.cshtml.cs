@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 
-namespace ContactdocIO.WebUI.Areas.Identity.Pages.Account
+namespace ContractdocIO.WebUI.Areas.Identity.Pages.Account
 {
     public class ConfirmEmailChangeModel : PageModel
     {

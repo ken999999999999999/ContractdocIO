@@ -1,9 +1,9 @@
 ﻿using System.Runtime.Serialization;
 using AutoMapper;
-using ContactdocIO.Application.Common.Mappings;
+using ContractdocIO.Application.Common.Mappings;
 using NUnit.Framework;
 
-namespace ContactdocIO.Application.UnitTests.Common.Mappings;
+namespace ContractdocIO.Application.UnitTests.Common.Mappings;
 
 public class MappingTests
 {

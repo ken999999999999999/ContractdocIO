@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ContactdocIO.Domain.Common;
+namespace ContractdocIO.Domain.Common;
 
 public abstract class BaseEntity
 {

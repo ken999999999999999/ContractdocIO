@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
 using MediatR;
-using ValidationException = ContactdocIO.Application.Common.Exceptions.ValidationException;
+using ValidationException = ContractdocIO.Application.Common.Exceptions.ValidationException;
 
-namespace ContactdocIO.Application.Common.Behaviours;
+namespace ContractdocIO.Application.Common.Behaviours;
 
 public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
      where TRequest : notnull

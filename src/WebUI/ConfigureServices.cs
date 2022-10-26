@@ -1,7 +1,7 @@
-﻿using ContactdocIO.Application.Common.Interfaces;
-using ContactdocIO.Infrastructure.Persistence;
-using ContactdocIO.WebUI.Filters;
-using ContactdocIO.WebUI.Services;
+﻿using ContractdocIO.Application.Common.Interfaces;
+using ContractdocIO.Infrastructure.Persistence;
+using ContractdocIO.WebUI.Filters;
+using ContractdocIO.WebUI.Services;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -37,7 +37,7 @@ public static class ConfigureServices
 
         services.AddOpenApiDocument(configure =>
         {
-            configure.Title = "ContactdocIO API";
+            configure.Title = "ContractdocIO API";
             configure.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme
             {
                 Type = OpenApiSecuritySchemeType.ApiKey,

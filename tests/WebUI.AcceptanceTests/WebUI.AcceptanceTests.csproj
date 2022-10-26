@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-      <RootNamespace>ContactdocIO.WebUI.AcceptanceTests</RootNamespace>
-      <AssemblyName>ContactdocIO.WebUI.AcceptanceTests</AssemblyName>
+      <RootNamespace>ContractdocIO.WebUI.AcceptanceTests</RootNamespace>
+      <AssemblyName>ContractdocIO.WebUI.AcceptanceTests</AssemblyName>
       <Nullable>enable</Nullable>
       <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>

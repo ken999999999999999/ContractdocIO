@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace ContactdocIO.WebUI.AcceptanceTests;
+namespace ContractdocIO.WebUI.AcceptanceTests;
 
 public static class ConfigurationHelper
 {

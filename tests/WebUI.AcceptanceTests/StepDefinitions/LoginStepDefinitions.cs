@@ -1,4 +1,4 @@
-namespace ContactdocIO.WebUI.AcceptanceTests.StepDefinitions;
+namespace ContractdocIO.WebUI.AcceptanceTests.StepDefinitions;
 
 [Binding]
 public sealed class LoginStepDefinitions

@@ -1,12 +1,12 @@
 ﻿using System.Reflection;
-using ContactdocIO.Application.Common.Interfaces;
-using ContactdocIO.Infrastructure.Persistence.Interceptors;
+using ContractdocIO.Application.Common.Interfaces;
+using ContractdocIO.Infrastructure.Persistence.Interceptors;
 using Duende.IdentityServer.EntityFramework.Options;
 using MediatR;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.Extensions.Options;
 
-namespace ContactdocIO.Infrastructure.Persistence;
+namespace ContractdocIO.Infrastructure.Persistence;
 
 public class ApplicationDbContext : ApiAuthorizationDbContext<IOUser>, IApplicationDbContext
 {
@@ -24,7 +24,7 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<IOUser>, IApplicat
         _auditableEntitySaveChangesInterceptor = auditableEntitySaveChangesInterceptor;
     }
 
-    public DbSet<Contact> Contacts => Set<Contact>();
+    public DbSet<Contract> Contracts => Set<Contract>();
 
     public DbSet<Option> Options => Set<Option>();
 

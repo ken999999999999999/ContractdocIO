@@ -2,8 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <RootNamespace>ContactdocIO.Infrastructure</RootNamespace>
-        <AssemblyName>ContactdocIO.Infrastructure</AssemblyName>
+        <RootNamespace>ContractdocIO.Infrastructure</RootNamespace>
+        <AssemblyName>ContractdocIO.Infrastructure</AssemblyName>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>

@@ -1,6 +1,6 @@
-﻿using ContactdocIO.Application.Common.Models;
+﻿using ContractdocIO.Application.Common.Models;
 
-namespace ContactdocIO.Application.Common.Interfaces;
+namespace ContractdocIO.Application.Common.Interfaces;
 
 public interface IIdentityService
 {

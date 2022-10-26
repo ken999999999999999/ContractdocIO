@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using ContactdocIO.Application.Common.Interfaces;
-using ContactdocIO.Application.Common.Models;
+using ContractdocIO.Application.Common.Interfaces;
+using ContractdocIO.Application.Common.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ContactdocIO.Application.Common.Mappings;
+namespace ContractdocIO.Application.Common.Mappings;
 
 public static class MappingExtensions
 {

@@ -1,6 +1,6 @@
-﻿using ContactdocIO.Application.Common.Interfaces;
+﻿using ContractdocIO.Application.Common.Interfaces;
 
-namespace ContactdocIO.Infrastructure.Services;
+namespace ContractdocIO.Infrastructure.Services;
 
 public class DateTimeService : IDateTime
 {

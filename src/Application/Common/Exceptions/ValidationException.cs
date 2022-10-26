@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 
-namespace ContactdocIO.Application.Common.Exceptions;
+namespace ContractdocIO.Application.Common.Exceptions;
 
 public class ValidationException : Exception
 {

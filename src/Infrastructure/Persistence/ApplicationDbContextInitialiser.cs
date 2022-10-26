@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
-namespace ContactdocIO.Infrastructure.Persistence;
+namespace ContractdocIO.Infrastructure.Persistence;
 
 public class ApplicationDbContextInitialiser
 {
