@@ -1,6 +1,7 @@
-﻿namespace ContactdocIO.Application.Contacts.Dto;
+﻿using ContactdocIO.Application.Common.Dto;
+namespace ContactdocIO.Application.Contacts.Dto;
 
-public class ContactDto : BaseAuditableEntity, IMapFrom<Contact>
+public class ContactDto : BaseAuditableEntityDto, IMapFrom<Contact>
 {
     public string Content { get; set; } = default!;
 
