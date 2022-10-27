@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AuthConfigProvider } from './auth';
 import ThemeProvider from '@/theme/ThemeProvider';
+import { CssBaseline } from '@mui/material';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,6 +14,7 @@ root.render(
   <React.StrictMode>
     <AuthConfigProvider>
       <ThemeProvider>
+        <CssBaseline />
         <App />
       </ThemeProvider>
     </AuthConfigProvider>

@@ -1,40 +1,34 @@
+import { useRef } from 'react';
 import { AppBar, Box, Toolbar, Typography } from '@mui/material';
-import { Button, IconButton } from '@/lib';
-import LogoutIcon from '@mui/icons-material/Logout';
-import MenuIcon from '@mui/icons-material/Menu';
+import { Button } from '@/lib';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import { useAuth } from 'react-oidc-context';
+import Drawer, { IDrawerRef } from './Drawer';
 
 export default (): JSX.Element => {
   const auth = useAuth();
+  const drawerRef = useRef<IDrawerRef | null>(null);
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar>
-        <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            children={<MenuIcon />}
-            style={{ marginRight: '5px' }}
-          />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Contract.IO
-          </Typography>
-          <Typography
-            variant="h6"
-            component="div"
-            style={{ marginRight: '5px' }}
-          >
-            {`Hi, ${auth.user?.profile?.name ?? ''}`}
-          </Typography>
-          <Button
-            startIcon={<LogoutIcon />}
-            color="inherit"
-            onClick={() => auth.signoutRedirect()}
-          >
-            Log out
-          </Button>
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar>
+          <Toolbar>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Contract.IO
+            </Typography>
+            <Button
+              color="inherit"
+              startIcon={<MenuOpenIcon />}
+              onClick={() => drawerRef?.current?.open()}
+            >
+              <Typography variant="h6" component="div">
+                {`Hi, ${auth.user?.profile?.name ?? ''}`}
+              </Typography>
+            </Button>
+          </Toolbar>
+        </AppBar>
+        <Drawer ref={drawerRef} />
+      </Box>
+    </>
   );
 };
