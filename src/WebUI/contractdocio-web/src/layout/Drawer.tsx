@@ -9,9 +9,10 @@ import {
 } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
-import pageItems from './PageItems';
+import drawerItems from './DrawerItems';
 import { useState, forwardRef, useImperativeHandle } from 'react';
 import { useAuth } from 'react-oidc-context';
+import { useNavigate } from 'react-router-dom';
 
 export interface IDrawerRef {
   open: () => void;
@@ -20,6 +21,7 @@ export interface IDrawerRef {
 export default forwardRef<IDrawerRef>((_, ref): JSX.Element => {
   const [open, setOpen] = useState(false);
   const auth = useAuth();
+  const navigate = useNavigate();
 
   useImperativeHandle(ref, () => ({
     open: () => setOpen(true)
@@ -33,8 +35,15 @@ export default forwardRef<IDrawerRef>((_, ref): JSX.Element => {
       anchor="right"
     >
       <List style={{ flexGrow: 1 }}>
-        {pageItems.map((item) => (
-          <ListItem key={item.key} disablePadding>
+        {drawerItems.map((item) => (
+          <ListItem
+            key={item.key}
+            disablePadding
+            onClick={() => {
+              navigate(item.key);
+              setOpen(false);
+            }}
+          >
             <ListItemButton>
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.title} />

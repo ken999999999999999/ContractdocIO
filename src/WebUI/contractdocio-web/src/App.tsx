@@ -1,14 +1,8 @@
 import { Layout } from '@/layout';
-import { AuthProvider } from '@/auth';
+import { ReactNode } from 'react';
 
-const App = () => {
-  return (
-    <AuthProvider>
-      <Layout>
-        <></>
-      </Layout>
-    </AuthProvider>
-  );
+const App = ({ children }: { children: ReactNode }): JSX.Element => {
+  return <Layout>{children}</Layout>;
 };
 
 export default App;

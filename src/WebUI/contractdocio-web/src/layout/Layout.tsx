@@ -1,5 +1,6 @@
 import Header from './Header';
-import { Box } from '@mui/material';
+import { Box } from '@/lib';
+import { Container } from '@mui/material';
 import Seo from './Seo';
 
 interface ILayout {
@@ -11,7 +12,14 @@ export default ({ children }: ILayout): JSX.Element => {
     <Box>
       <Seo />
       <Header />
-      {children}
+      <Container
+        style={{ marginTop: '64px' }}
+        disableGutters
+        maxWidth={false}
+        sx={{ padding: '12px 24px' }}
+      >
+        {children}
+      </Container>
     </Box>
   );
 };

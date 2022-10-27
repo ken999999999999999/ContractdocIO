@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import '@/theme/global.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AuthConfigProvider } from './auth';
 import ThemeProvider from '@/theme/ThemeProvider';
 import { CssBaseline } from '@mui/material';
-
+import { AppRouter } from './routes';
+import { AuthProvider } from '@/auth';
+import { BrowserRouter } from 'react-router-dom';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
@@ -15,7 +16,11 @@ root.render(
     <AuthConfigProvider>
       <ThemeProvider>
         <CssBaseline />
-        <App />
+        <AuthProvider>
+          <BrowserRouter>
+            <AppRouter />
+          </BrowserRouter>
+        </AuthProvider>
       </ThemeProvider>
     </AuthConfigProvider>
   </React.StrictMode>
