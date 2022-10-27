@@ -2,27 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import '@/theme/global.css';
 import reportWebVitals from './reportWebVitals';
-import { AuthConfigProvider } from './auth';
-import ThemeProvider from '@/theme/ThemeProvider';
-import { CssBaseline } from '@mui/material';
-import { AppRouter } from './routes';
-import { AuthProvider } from '@/auth';
-import { BrowserRouter } from 'react-router-dom';
+import App from './App';
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <AuthConfigProvider>
-      <ThemeProvider>
-        <CssBaseline />
-        <AuthProvider>
-          <BrowserRouter>
-            <AppRouter />
-          </BrowserRouter>
-        </AuthProvider>
-      </ThemeProvider>
-    </AuthConfigProvider>
+    <App />
   </React.StrictMode>
 );
 

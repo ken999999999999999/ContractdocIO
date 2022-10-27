@@ -1,6 +1,7 @@
 import SendIcon from '@mui/icons-material/Send';
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 import IndexPage from '@/pages/index';
+import NotFoundPage from '@/pages/404';
 
 interface IRouteList {
   link: string;
@@ -23,6 +24,11 @@ const RouteList: Array<IRouteList> = [
     link: '/built-contracts/',
     title: 'Built Contracts',
     jsx: <CreateNewFolderIcon />
+  },
+  {
+    link: '*',
+    title: '404 - Not Found',
+    jsx: <NotFoundPage />
   }
 ];
 
