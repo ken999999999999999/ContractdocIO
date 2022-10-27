@@ -6,6 +6,8 @@ interface IAuthProvider {
 export default ({ children }: IAuthProvider): JSX.Element => {
   const auth = useAuth();
 
+  const pathname = window.location.pathname;
+
   switch (auth.activeNavigator) {
     case 'signinSilent':
       return <div>Signing you in...</div>;
@@ -22,7 +24,9 @@ export default ({ children }: IAuthProvider): JSX.Element => {
   }
   if (!auth.isAuthenticated)
     auth.signinRedirect({
-      state: { returnUrl: window.location.pathname }
+      state: {
+        returnUrl: pathname.startsWith('/authentication/') ? '/' : pathname
+      }
     });
 
   return children;
