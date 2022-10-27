@@ -3,7 +3,7 @@ import { ButtonProps } from '@mui/material';
 
 //interface IButton extends ButtonProps {}
 
-export default ({ variant = 'contained', children, ...rest }: ButtonProps) => (
+export default ({ variant = 'outlined', children, ...rest }: ButtonProps) => (
   <MuiButton variant={variant} {...rest}>
     {children}
   </MuiButton>
