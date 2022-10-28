@@ -4,6 +4,9 @@ import ThemeProvider from '@/theme/ThemeProvider';
 import { CssBaseline } from '@mui/material';
 import { AuthProvider } from '@/auth';
 import { BrowserRouter } from 'react-router-dom';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 const App = (): JSX.Element => {
   return (
@@ -12,7 +15,9 @@ const App = (): JSX.Element => {
         <ThemeProvider>
           <CssBaseline />
           <AuthProvider>
-            <AppRouter />
+            <QueryClientProvider client={queryClient}>
+              <AppRouter />
+            </QueryClientProvider>
           </AuthProvider>
         </ThemeProvider>
       </AuthConfigProvider>
