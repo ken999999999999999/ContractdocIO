@@ -10,3 +10,4 @@ global using ContractdocIO.Application.Common.Mappings;
 global using ContractdocIO.Application.Common.Models;
 global using ContractdocIO.Domain.Common;
 global using ContractdocIO.Domain.Entities;
+global using ContractdocIO.Application.Common.Exceptions;
