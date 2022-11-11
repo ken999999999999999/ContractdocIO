@@ -1,6 +1,7 @@
-import { Card, DataGrid } from '@/lib';
+import { AddButton, Card, DataGrid } from '@/lib';
 import { useGetContractsWithPagination } from '@/api/Contracts';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const initParams: IOrder = {
   pageNumber: 1,
@@ -21,7 +22,14 @@ export default (): JSX.Element => {
   const { isLoading, data } = useGetContractsWithPagination(params);
 
   return (
-    <Card title="Received Contracts">
+    <Card
+      title="Built Contracts"
+      action={
+        <Link to="/contracts/create-contract">
+          <AddButton>Create New Contract</AddButton>
+        </Link>
+      }
+    >
       <DataGrid
         loading={isLoading}
         pageMeta={{

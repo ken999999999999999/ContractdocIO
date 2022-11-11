@@ -1,5 +1,6 @@
-import { ContractsClient } from './web-api-client';
-import { useQuery } from '@tanstack/react-query';
+import { ContractsClient, CreateContractCommand } from './web-api-client';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 const client = new ContractsClient(window.location.origin);
 
@@ -12,3 +13,12 @@ export const useGetContractsWithPagination = (args: IOrder) =>
       args.isOrderByAsc
     )
   );
+
+export const useCreateContract = () => {
+  const navigate = useNavigate();
+  return useMutation({
+    mutationKey: ['contract', 'create'],
+    mutationFn: (command: CreateContractCommand) => client.create(command),
+    onSuccess: (data) => navigate(`/contracts/${data}`)
+  });
+};
