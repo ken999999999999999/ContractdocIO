@@ -54,7 +54,7 @@ export default forwardRef<IDrawerRef>((_, ref): JSX.Element => {
       <Divider />
       <List>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton component="a" href="/Identity/Account/Manage">
             <ListItemIcon children={<SettingsIcon />} />
             <ListItemText primary="Account" />
           </ListItemButton>

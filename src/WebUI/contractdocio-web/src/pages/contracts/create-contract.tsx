@@ -5,7 +5,8 @@ import {
   Stack,
   Checkbox,
   ResetButton,
-  SubmitButton
+  SubmitButton,
+  IconButton
 } from '@/lib';
 import { useCreateContract } from '@/api/Contracts';
 import {
@@ -16,18 +17,21 @@ import {
 } from 'react-hook-form';
 import { CreateContractCommand } from '@/api/web-api-client';
 import SnackbarUtils from '@/lib/SnackbarUtils';
-import { Typography, TextField } from '@mui/material';
-
+import { Typography, TextField, FormControlLabel } from '@mui/material';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 export default (): JSX.Element => {
-  const { register, handleSubmit, control } = useForm<CreateContractCommand>();
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors }
+  } = useForm<CreateContractCommand>();
   const command = useCreateContract();
 
-  const { fields, append, prepend, remove, swap, move, insert } = useFieldArray(
-    {
-      control,
-      name: 'options'
-    }
-  );
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'options'
+  });
 
   const onSubmit: SubmitHandler<CreateContractCommand> = (data) => {
     const newData: CreateContractCommand = {
@@ -37,66 +41,74 @@ export default (): JSX.Element => {
         order: index
       }))
     };
-    SnackbarUtils.info(JSON.stringify(newData));
-    //command.mutate(newData);
+
+    command.mutate(newData);
   };
 
   return (
     <Card title="Create your own contract">
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack direction="column">
-          <Controller
-            name="type"
-            rules={{
-              required: { value: true, message: 'Please fill in "Type"' }
-            }}
-            control={control}
-            render={({ field, fieldState, formState }) => {
-              console.log(fieldState, formState);
-              return (
-                <TextField
-                  required
-                  label="Type"
-                  error={!!fieldState.error}
-                  helperText={fieldState.error?.message}
-                  {...field}
-                />
-              );
-            }}
+          <TextField
+            label="Type"
+            required
+            {...register('type', {
+              required: { value: true, message: 'Type is required' },
+              maxLength: { value: 20, message: 'Max Length is 20' }
+            })}
+            error={!!errors?.type}
+            helperText={errors?.type?.message ?? ''}
           />
-
-          <Controller
-            name="title"
-            rules={{ required: true }}
-            control={control}
-            render={({ field }) => (
-              <TextField required label="Title" {...field} />
-            )}
+          <TextField
+            label="Title"
+            required
+            {...register('title', {
+              required: { value: true, message: 'Title is required' },
+              maxLength: { value: 20, message: 'Max Length is 20' }
+            })}
+            error={!!errors?.title}
+            helperText={errors?.title?.message ?? ''}
           />
-          <Controller
-            name="content"
-            rules={{ required: true }}
-            control={control}
-            render={({ field }) => (
-              <TextField required label="Content" {...field} />
-            )}
+          <TextField
+            label="Content"
+            required
+            {...register('content', {
+              required: { value: true, message: 'Content is required' },
+              maxLength: { value: 2000, message: 'Max Length is 2000' }
+            })}
+            multiline
+            minRows={3}
+            error={!!errors?.content}
+            helperText={errors?.content?.message ?? ''}
           />
 
           {fields.map((field, index) => (
-            <Stack alignItems="flex-end" key={field.id}>
+            <Stack alignItems="center" key={field.id}>
               <Typography>{`${index + 1}.`}</Typography>
-              <Controller
-                name={`options.${index}.content`}
-                rules={{ required: true }}
-                control={control}
-                render={({ field: subField }) => (
-                  <TextField required label="Option Content" {...subField} />
-                )}
+
+              <TextField
+                required
+                label="Option Content"
+                {...register(`options.${index}.content`, {
+                  required: { value: true, message: 'Content is required' },
+                  maxLength: { value: 20, message: 'Max Length is 20' }
+                })}
+                error={!!errors?.options?.[index]?.content}
+                helperText={errors?.options?.[index]?.content?.message ?? ''}
               />
               <Controller
                 name={`options.${index}.isRequired`}
                 control={control}
-                render={({ field: subField }) => <Checkbox {...subField} />}
+                render={({ field: subField }) => (
+                  <FormControlLabel
+                    control={<Checkbox {...subField} />}
+                    label="Required"
+                  />
+                )}
+              />
+              <IconButton
+                onClick={() => remove(index)}
+                children={<RemoveCircleOutlineIcon />}
               />
             </Stack>
           ))}

@@ -30,6 +30,7 @@ export default (): JSX.Element => {
         </Link>
       }
     >
+      {JSON.stringify(data)}
       <DataGrid
         loading={isLoading}
         pageMeta={{

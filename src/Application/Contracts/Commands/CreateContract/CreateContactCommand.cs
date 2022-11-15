@@ -33,16 +33,16 @@ public class CreateContractCommandHandler : IRequestHandler<CreateContractComman
     {
         var entity = new Contract();
 
-        string contactGroupId;
+
 
         if (request.ParentContractId.HasValue)
         {
-            contactGroupId = await _context.Contracts.Where(a => a.Id == request.ParentContractId).Select(a => a.ContractGroupId).FirstAsync();
-            entity.Version = (await _context.Contracts.Where(a => a.ContractGroupId == contactGroupId).MaxAsync(a => a.Version)) + 1;
+            entity.ContractGroupId = await _context.Contracts.Where(a => a.Id == request.ParentContractId).Select(a => a.ContractGroupId).FirstAsync();
+            entity.Version = (await _context.Contracts.Where(a => a.ContractGroupId == entity.ContractGroupId).MaxAsync(a => a.Version)) + 1;
         }
         else
         {
-            contactGroupId = new Guid().ToString();
+            entity.ContractGroupId = new Guid().ToString();
         }
 
 
