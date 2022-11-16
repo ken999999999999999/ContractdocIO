@@ -30,15 +30,10 @@ export default (): JSX.Element => {
         </Link>
       }
     >
-      {JSON.stringify(data)}
       <DataGrid
         loading={isLoading}
-        pageMeta={{
-          pageNumber: data?.pageNumber,
-          pageSize: params?.pageSize,
-          totalCount: data?.totalCount
-        }}
-        rows={data?.items ?? []}
+        data={data}
+        pageSize={params.pageSize}
         columns={columns}
       />
     </Card>

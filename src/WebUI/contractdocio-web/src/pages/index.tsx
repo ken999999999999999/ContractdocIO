@@ -10,9 +10,9 @@ const initParams: IOrder = {
 };
 
 const columns = [
-  { field: 'type', headerName: 'Type' },
-  { field: 'title', headerName: 'Title' },
-  { field: 'version', headerName: 'Version' }
+  { field: 'type', headerName: 'Type', width: 130 },
+  { field: 'title', headerName: 'Title', width: 130 },
+  { field: 'version', headerName: 'Version', width: 130 }
 ];
 
 export default (): JSX.Element => {
@@ -24,13 +24,9 @@ export default (): JSX.Element => {
     <Card title="Received Contracts">
       <DataGrid
         loading={isLoading}
-        pageMeta={{
-          pageNumber: data?.pageNumber,
-          pageSize: params?.pageSize,
-          totalCount: data?.totalCount
-        }}
-        rows={data?.items ?? []}
+        data={data}
         columns={columns}
+        pageSize={params?.pageSize}
       />
     </Card>
   );
