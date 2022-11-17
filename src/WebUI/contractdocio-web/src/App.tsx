@@ -12,6 +12,7 @@ import { handleError } from '@/api/common';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
+      cacheTime: 0,
       refetchInterval: false,
       refetchIntervalInBackground: false,
       refetchOnMount: false,
@@ -21,6 +22,7 @@ const queryClient = new QueryClient({
       onError: handleError
     },
     mutations: {
+      cacheTime: 0,
       onError: handleError
     }
   }

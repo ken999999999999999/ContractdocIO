@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const client = new ContractsClient(window.location.origin);
 
 export const useGetContractsWithPagination = (args: IOrder) =>
-  useQuery(['contract', 'getWithPagination'], () =>
+  useQuery(['contract', 'getWithPagination', args], () =>
     client.getWithPagination(
       args.pageNumber,
       args.pageSize,

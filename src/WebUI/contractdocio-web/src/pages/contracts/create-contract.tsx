@@ -16,7 +16,6 @@ import {
   Controller
 } from 'react-hook-form';
 import { CreateContractCommand } from '@/api/web-api-client';
-import SnackbarUtils from '@/lib/SnackbarUtils';
 import { Typography, TextField, FormControlLabel } from '@mui/material';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 export default (): JSX.Element => {

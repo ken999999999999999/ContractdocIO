@@ -1,7 +1,9 @@
-import { AddButton, Card, DataGrid } from '@/lib';
+import { AddButton, Card, DataGrid, ViewButton } from '@/lib';
 import { useGetContractsWithPagination } from '@/api/Contracts';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ContractBriefDto } from '@/api/web-api-client';
+import { GridColDef } from '@mui/x-data-grid';
 
 const initParams: IOrder = {
   pageNumber: 1,
@@ -10,10 +12,15 @@ const initParams: IOrder = {
   isOrderByAsc: false
 };
 
-const columns = [
+const columns: GridColDef<ContractBriefDto>[] = [
   { field: 'type', headerName: 'Type' },
   { field: 'title', headerName: 'Title' },
-  { field: 'version', headerName: 'Version' }
+  { field: 'version', headerName: 'Version' },
+  {
+    field: 'id',
+    headerName: 'Action',
+    renderCell: ({ id }) => <ViewButton to={`/contract/${id ?? ''}`} />
+  }
 ];
 
 export default (): JSX.Element => {
@@ -33,8 +40,13 @@ export default (): JSX.Element => {
       <DataGrid
         loading={isLoading}
         data={data}
-        pageSize={params.pageSize}
+        params={params}
+        initialParams={initParams}
+        onParamsChange={(value) =>
+          setParams((oldParams) => ({ ...oldParams, ...value }))
+        }
         columns={columns}
+        pageSize={params?.pageSize}
       />
     </Card>
   );

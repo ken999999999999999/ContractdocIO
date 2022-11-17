@@ -10,9 +10,9 @@ const initParams: IOrder = {
 };
 
 const columns = [
-  { field: 'type', headerName: 'Type', width: 130 },
-  { field: 'title', headerName: 'Title', width: 130 },
-  { field: 'version', headerName: 'Version', width: 130 }
+  { field: 'type', headerName: 'Type' },
+  { field: 'title', headerName: 'Title' },
+  { field: 'version', headerName: 'Version' }
 ];
 
 export default (): JSX.Element => {
@@ -25,6 +25,11 @@ export default (): JSX.Element => {
       <DataGrid
         loading={isLoading}
         data={data}
+        params={params}
+        initialParams={initParams}
+        onParamsChange={(value) =>
+          setParams((oldParams) => ({ ...oldParams, ...value }))
+        }
         columns={columns}
         pageSize={params?.pageSize}
       />
