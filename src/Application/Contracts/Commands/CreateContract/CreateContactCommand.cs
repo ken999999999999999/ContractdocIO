@@ -42,7 +42,7 @@ public class CreateContractCommandHandler : IRequestHandler<CreateContractComman
         }
         else
         {
-            entity.ContractGroupId = new Guid().ToString();
+            entity.ContractGroupId = Guid.NewGuid().ToString();
         }
 
 
