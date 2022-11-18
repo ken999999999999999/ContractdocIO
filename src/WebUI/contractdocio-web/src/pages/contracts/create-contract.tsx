@@ -1,122 +1,100 @@
-import {
-  Card,
-  AddButton,
-  Loading,
-  Stack,
-  Checkbox,
-  ResetButton,
-  SubmitButton,
-  IconButton,
-  RichTextEditor,
-  SnackbarUtils
-} from '@/lib';
+import { Card, Loading, Stack, Steps, Button } from '@/lib';
 import { useCreateContract } from '@/api/Contracts';
-import {
-  useForm,
-  SubmitHandler,
-  useFieldArray,
-  Controller
-} from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { CreateContractCommand } from '@/api/web-api-client';
-import { Typography, TextField, FormControlLabel } from '@mui/material';
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import { ContractForm, ContractPreview } from '@/components/Contracts';
+import { useCallback, useEffect, useState } from 'react';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+
+const steps = [
+  {
+    title: 'Create your contract',
+    key: 'create'
+  },
+  {
+    title: 'Preview',
+    key: 'preview'
+  },
+  {
+    title: 'Create Success',
+    key: 'success'
+  }
+];
+
 export default (): JSX.Element => {
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors }
-  } = useForm<CreateContractCommand>({ criteriaMode: 'all' });
+  const { register, handleSubmit, control, formState, watch } =
+    useForm<CreateContractCommand>({ criteriaMode: 'all' });
+
   const command = useCreateContract();
 
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: 'options'
-  });
+  const [currentStep, setCurrentStep] = useState<
+    'create' | 'preview' | 'success'
+  >('create');
 
-  const onSubmit: SubmitHandler<CreateContractCommand> = (data) => {
-    const newData: CreateContractCommand = {
-      ...data,
-      options: data.options?.map((option, index) => ({
-        ...option,
-        order: index
-      }))
-    };
-    SnackbarUtils.info(JSON.stringify(newData));
-    //command.mutate(newData);
+  const onSubmit: SubmitHandler<CreateContractCommand> = useCallback(
+    (data) => {
+      switch (currentStep) {
+        case 'create':
+          setCurrentStep('preview');
+          return;
+        case 'preview': {
+          command.mutate({
+            ...data,
+            options: data.options?.map((option, index) => ({
+              ...option,
+              order: index
+            }))
+          });
+          return;
+        }
+        default:
+          return;
+      }
+    },
+    [command, currentStep]
+  );
+
+  const formValue = watch();
+
+  useEffect(() => {
+    if (command.isSuccess) setCurrentStep('success');
+  }, [command]);
+
+  const content = {
+    create: (
+      <ContractForm
+        register={register}
+        control={control}
+        formState={formState}
+      />
+    ),
+    preview: <ContractPreview {...formValue} />,
+    success: <></>
   };
 
   return (
     <Card title="Create your own contract">
+      <Steps steps={steps} currentStep={currentStep} />
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack direction="column">
-          <TextField
-            label="Type"
-            required
-            {...register('type', {
-              required: { value: true, message: 'Type is required' },
-              maxLength: { value: 20, message: 'Max Length is 20' }
-            })}
-            error={!!errors?.type}
-            helperText={errors?.type?.message ?? ''}
-          />
-          <TextField
-            label="Title"
-            required
-            {...register('title', {
-              required: { value: true, message: 'Title is required' },
-              maxLength: { value: 20, message: 'Max Length is 20' }
-            })}
-            error={!!errors?.title}
-            helperText={errors?.title?.message ?? ''}
-          />
-          <RichTextEditor
-            formProps={{
-              control: control,
-              name: 'content',
-              rules: {
-                required: { value: true, message: 'Content is required' },
-                maxLength: { value: 2000, message: 'Max Length is 2000' }
-              }
-            }}
-            placeholder="Please draft your contract content here."
-          />
+        {content[currentStep]}
+        <Stack justifyContent="flex-end" marginTop={3}>
+          <Button
+            hidden={currentStep !== 'preview'}
+            color="secondary"
+            startIcon={<ArrowBackIosIcon />}
+            onClick={() => setCurrentStep('create')}
+          >
+            Previous
+          </Button>
 
-          {fields.map((field, index) => (
-            <Stack alignItems="center" key={field.id}>
-              <Typography>{`${index + 1}.`}</Typography>
-
-              <TextField
-                required
-                label="Option Content"
-                {...register(`options.${index}.content`, {
-                  required: { value: true, message: 'Content is required' },
-                  maxLength: { value: 20, message: 'Max Length is 20' }
-                })}
-                error={!!errors?.options?.[index]?.content}
-                helperText={errors?.options?.[index]?.content?.message ?? ''}
-              />
-              <Controller
-                name={`options.${index}.isRequired`}
-                control={control}
-                render={({ field: subField }) => (
-                  <FormControlLabel
-                    control={<Checkbox {...subField} />}
-                    label="Required"
-                  />
-                )}
-              />
-              <IconButton
-                onClick={() => remove(index)}
-                children={<RemoveCircleOutlineIcon />}
-              />
-            </Stack>
-          ))}
-          <AddButton onClick={() => append({ content: '' })}>Option</AddButton>
-          <Stack justifyContent="flex-end" alignItems="flex-end">
-            <ResetButton>Reset</ResetButton>
-            <SubmitButton>Submit</SubmitButton>
-          </Stack>
+          <Button
+            type="submit"
+            endIcon={<ArrowForwardIosIcon />}
+            hidden={currentStep === 'success'}
+          >
+            {currentStep === 'create' ? 'Next' : 'Confirm'}
+          </Button>
         </Stack>
       </form>
 

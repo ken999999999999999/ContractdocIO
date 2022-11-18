@@ -25,3 +25,5 @@ export { default as Stack } from './Stack';
 export { default as Checkbox } from './Checkbox';
 
 export { default as RichTextEditor } from './RichTextEditor';
+
+export { default as Steps } from './Steps/Steps';

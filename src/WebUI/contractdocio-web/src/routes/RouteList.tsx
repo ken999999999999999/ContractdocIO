@@ -1,5 +1,4 @@
 import SendIcon from '@mui/icons-material/Send';
-import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 import IndexPage from '@/pages/index';
 import NotFoundPage from '@/pages/404';
 import ContractsPage from '@/pages/contracts';
