@@ -6,7 +6,9 @@ import {
   Checkbox,
   ResetButton,
   SubmitButton,
-  IconButton
+  IconButton,
+  RichTextEditor,
+  SnackbarUtils
 } from '@/lib';
 import { useCreateContract } from '@/api/Contracts';
 import {
@@ -24,7 +26,7 @@ export default (): JSX.Element => {
     handleSubmit,
     control,
     formState: { errors }
-  } = useForm<CreateContractCommand>();
+  } = useForm<CreateContractCommand>({ criteriaMode: 'all' });
   const command = useCreateContract();
 
   const { fields, append, remove } = useFieldArray({
@@ -40,8 +42,8 @@ export default (): JSX.Element => {
         order: index
       }))
     };
-
-    command.mutate(newData);
+    SnackbarUtils.info(JSON.stringify(newData));
+    //command.mutate(newData);
   };
 
   return (
@@ -68,17 +70,16 @@ export default (): JSX.Element => {
             error={!!errors?.title}
             helperText={errors?.title?.message ?? ''}
           />
-          <TextField
-            label="Content"
-            required
-            {...register('content', {
-              required: { value: true, message: 'Content is required' },
-              maxLength: { value: 2000, message: 'Max Length is 2000' }
-            })}
-            multiline
-            minRows={3}
-            error={!!errors?.content}
-            helperText={errors?.content?.message ?? ''}
+          <RichTextEditor
+            formProps={{
+              control: control,
+              name: 'content',
+              rules: {
+                required: { value: true, message: 'Content is required' },
+                maxLength: { value: 2000, message: 'Max Length is 2000' }
+              }
+            }}
+            placeholder="Please draft your contract content here."
           />
 
           {fields.map((field, index) => (

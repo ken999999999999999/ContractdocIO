@@ -5,7 +5,7 @@ import { useState } from 'react';
 const initParams: IOrder = {
   pageNumber: 1,
   pageSize: 10,
-  orderBy: 'created',
+  orderBy: 'Created',
   isOrderByAsc: false
 };
 

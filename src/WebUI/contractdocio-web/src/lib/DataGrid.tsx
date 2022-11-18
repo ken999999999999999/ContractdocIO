@@ -1,4 +1,5 @@
 import { DataGrid, DataGridProps, GridSortModel } from '@mui/x-data-grid';
+import { useCallback } from 'react';
 
 interface IDataGrid extends Omit<DataGridProps, 'rows'> {
   data?: {
@@ -26,24 +27,34 @@ export default ({
   onParamsChange,
   ...rest
 }: IDataGrid): JSX.Element => {
-  const onSortModelChange = (model: GridSortModel) =>
-    onParamsChange({
-      orderBy: model?.length
-        ? model?.[0].field.charAt(0).toUpperCase() + model?.[0].field?.slice(1)
-        : initialParams.orderBy,
-      isOrderByAsc: model?.length
-        ? model?.[0]?.sort === 'asc'
-        : initialParams.isOrderByAsc
-    });
+  const onSortModelChange = useCallback(
+    (model: GridSortModel) =>
+      onParamsChange({
+        orderBy: model?.length
+          ? model?.[0].field.charAt(0).toUpperCase() +
+            model?.[0].field?.slice(1)
+          : initialParams.orderBy,
+        isOrderByAsc: model?.length
+          ? model?.[0]?.sort === 'asc'
+          : initialParams.isOrderByAsc
+      }),
+    [onParamsChange]
+  );
 
-  const onPageChange = (pageNumber: number) => onParamsChange({ pageNumber });
+  const onPageChange = useCallback(
+    (pageNumber: number) => onParamsChange({ pageNumber: pageNumber + 1 }),
+    [onParamsChange]
+  );
 
-  const onPageSizeChange = (pageSize: number) => onParamsChange({ pageSize });
+  const onPageSizeChange = useCallback(
+    (pageSize: number) => onParamsChange({ pageSize }),
+    [onParamsChange]
+  );
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: 500, width: '100%' }}>
       <DataGrid
-        page={data?.pageNumber}
+        page={data?.pageNumber ? data.pageNumber - 1 : 0}
         pageSize={params.pageSize}
         rows={data?.items ?? []}
         rowCount={data?.totalCount ?? 0}

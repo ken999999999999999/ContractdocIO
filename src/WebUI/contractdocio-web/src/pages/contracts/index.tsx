@@ -8,7 +8,7 @@ import { GridColDef } from '@mui/x-data-grid';
 const initParams: IOrder = {
   pageNumber: 1,
   pageSize: 10,
-  orderBy: 'created',
+  orderBy: 'Created',
   isOrderByAsc: false
 };
 
