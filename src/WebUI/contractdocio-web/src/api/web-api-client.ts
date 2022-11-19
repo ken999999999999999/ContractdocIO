@@ -404,11 +404,11 @@ export interface BaseAuditableEntityDto extends BaseEntityDto {
 }
 
 export interface ContractDto extends BaseAuditableEntityDto {
-    options?: OptionDto[];
     content?: string;
     type?: string;
     title?: string;
     version?: number;
+    options?: OptionDto[];
 }
 
 export interface OptionDto {

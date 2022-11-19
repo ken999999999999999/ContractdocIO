@@ -21,7 +21,7 @@ export default (): JSX.Element => {
   const { isLoading, data } = useGetContractsWithPagination(params);
 
   return (
-    <Card title="Received Contracts">
+    <Card header="Received Contracts">
       <DataGrid
         loading={isLoading}
         data={data}

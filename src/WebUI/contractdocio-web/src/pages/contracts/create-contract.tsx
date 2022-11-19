@@ -1,40 +1,47 @@
-import {
-  Card,
-  Loading,
-  Stack,
-  Steps,
-  Button,
-  SuccessResult,
-  AddButton
-} from '@/lib';
-import { useCreateContract } from '@/api/Contracts';
+import { Card, Stack, Steps, Button, SuccessResult, AddButton } from '@/lib';
+import { useCreateContract, useGetContractById } from '@/api/Contracts';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { CreateContractCommand } from '@/api/web-api-client';
 import { ContractForm, ContractPreview } from '@/components/Contracts';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import UndoIcon from '@mui/icons-material/Undo';
-import { Link } from 'react-router-dom';
-
-const steps = [
-  {
-    title: 'Create your contract',
-    key: 'create'
-  },
-  {
-    title: 'Preview',
-    key: 'preview'
-  },
-  {
-    title: 'Finish',
-    key: 'success'
-  }
-];
+import { Link, useLocation } from 'react-router-dom';
 
 export default (): JSX.Element => {
-  const { register, handleSubmit, control, formState, watch } =
-    useForm<CreateContractCommand>({ criteriaMode: 'all' });
+  const { search } = useLocation();
+
+  const parentContractId = useMemo(() => {
+    const params = new URLSearchParams(search);
+    return params.get('parentContractId');
+  }, [search]);
+
+  const steps = useMemo(
+    () => [
+      {
+        title: `${!parentContractId ? 'Create' : 'Edit'} your contract`,
+        key: 'create'
+      },
+      {
+        title: 'Preview',
+        key: 'preview'
+      },
+      {
+        title: 'Finish',
+        key: 'success'
+      }
+    ],
+    [parentContractId]
+  );
+
+  const { isLoading: isFetching, data: parentContract } =
+    useGetContractById(parentContractId);
+
+  const { register, handleSubmit, control, formState, watch, setValue } =
+    useForm<CreateContractCommand>({
+      criteriaMode: 'all'
+    });
 
   const command = useCreateContract();
 
@@ -67,10 +74,6 @@ export default (): JSX.Element => {
 
   const formValue = watch();
 
-  useEffect(() => {
-    if (command.isSuccess) setCurrentStep('success');
-  }, [command]);
-
   const content = {
     create: (
       <ContractForm
@@ -82,7 +85,9 @@ export default (): JSX.Element => {
     preview: <ContractPreview {...formValue} />,
     success: (
       <SuccessResult
-        title="Successfully created contract"
+        title={`Successfully ${
+          !parentContractId ? 'created' : 'edited'
+        } contract`}
         description="Now you can send the contract to others."
         actions={[
           <AddButton onClick={() => location.reload()}>Create again</AddButton>,
@@ -96,8 +101,31 @@ export default (): JSX.Element => {
     )
   };
 
+  useEffect(() => {
+    if (command.isSuccess) setCurrentStep('success');
+  }, [command]);
+
+  useEffect(() => {
+    if (parentContract) {
+      setValue('parentContractId', parentContract?.id);
+      setValue('title', parentContract?.title);
+      setValue('type', parentContract?.type);
+      setValue('content', parentContract?.content);
+      setValue('options', parentContract?.options);
+    }
+  }, [parentContract]);
+
   return (
-    <Card title="Create your own contract">
+    <Card
+      header={
+        !parentContractId
+          ? 'Create your own contract'
+          : `Edit ${parentContract?.type ?? ''} - ${
+              parentContract?.title ?? ''
+            } (Version: ${parentContract?.version ?? ''})`
+      }
+      loading={command.isLoading || (isFetching && !!parentContractId)}
+    >
       <Steps steps={steps} currentStep={currentStep} />
       <form onSubmit={handleSubmit(onSubmit)}>
         {content[currentStep]}
@@ -118,8 +146,6 @@ export default (): JSX.Element => {
           )}
         </Stack>
       </form>
-
-      <Loading loading={command.isLoading} />
     </Card>
   );
 };

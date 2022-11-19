@@ -32,16 +32,6 @@ export default ({
   return (
     <Stack direction="column">
       <TextField
-        label="Type*"
-        {...register('type', {
-          required: { value: true, message: 'Type is required' },
-          maxLength: { value: 20, message: 'Max Length is 20' }
-        })}
-        error={!!errors?.type}
-        helperText={errors?.type?.message ?? ''}
-      />
-
-      <TextField
         label="Title*"
         {...register('title', {
           required: { value: true, message: 'Title is required' },
@@ -49,6 +39,15 @@ export default ({
         })}
         error={!!errors?.title}
         helperText={errors?.title?.message ?? ''}
+      />
+      <TextField
+        label="Type*"
+        {...register('type', {
+          required: { value: true, message: 'Type is required' },
+          maxLength: { value: 20, message: 'Max Length is 20' }
+        })}
+        error={!!errors?.type}
+        helperText={errors?.type?.message ?? ''}
       />
       <RichTextEditor
         formProps={{
@@ -61,7 +60,6 @@ export default ({
         }}
         placeholder="Please draft your contract content here."
       />
-
       {fields.map((field, index) => (
         <Stack alignItems="center" key={field.id}>
           <Typography>{`${index + 1}.`}</Typography>
@@ -80,7 +78,7 @@ export default ({
             control={control}
             render={({ field: subField }) => (
               <FormControlLabel
-                control={<Checkbox {...subField} />}
+                control={<Checkbox checked={subField.value} {...subField} />}
                 label="Required"
               />
             )}

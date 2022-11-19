@@ -33,7 +33,7 @@ export default ({ title, content, options }: IContractPreview): JSX.Element => {
             {options?.map((option, index) => (
               <FormControlLabel
                 key={`options${index}`}
-                control={<Checkbox />}
+                control={<Checkbox disabled />}
                 label={`${option.content ?? ''}${option.isRequired ? '*' : ''}`}
               />
             ))}

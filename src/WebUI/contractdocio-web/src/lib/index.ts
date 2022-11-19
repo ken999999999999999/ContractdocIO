@@ -10,6 +10,8 @@ export { default as IconButton } from './Buttons/IconButton';
 
 export { default as ViewButton } from './Buttons/ViewButton';
 
+export { default as EditButton } from './Buttons/EditButton';
+
 export { default as Box } from './Box';
 
 export { default as Card } from './Card';

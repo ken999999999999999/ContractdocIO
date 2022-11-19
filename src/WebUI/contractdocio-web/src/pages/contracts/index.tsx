@@ -19,7 +19,7 @@ const columns: GridColDef<ContractBriefDto>[] = [
   {
     field: 'id',
     headerName: 'Action',
-    renderCell: ({ id }) => <ViewButton to={`/contract/${id ?? ''}`} />
+    renderCell: ({ id }) => <ViewButton to={`/contracts/${id ?? ''}`} />
   }
 ];
 
@@ -30,7 +30,7 @@ export default (): JSX.Element => {
 
   return (
     <Card
-      title="Built Contracts"
+      header="Built Contracts"
       action={
         <Link to="/contracts/create-contract">
           <AddButton>Create New Contract</AddButton>

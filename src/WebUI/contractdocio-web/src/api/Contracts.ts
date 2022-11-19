@@ -19,3 +19,10 @@ export const useCreateContract = () => {
     mutationFn: (command: CreateContractCommand) => client.create(command)
   });
 };
+
+export const useGetContractById = (contractId?: string | null) =>
+  useQuery({
+    queryKey: ['contract', contractId],
+    queryFn: () => client.get(+(contractId ?? '')),
+    enabled: !!contractId
+  });
