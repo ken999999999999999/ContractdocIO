@@ -32,8 +32,7 @@ export default ({
   return (
     <Stack direction="column">
       <TextField
-        label="Type"
-        required
+        label="Type*"
         {...register('type', {
           required: { value: true, message: 'Type is required' },
           maxLength: { value: 20, message: 'Max Length is 20' }
@@ -41,9 +40,9 @@ export default ({
         error={!!errors?.type}
         helperText={errors?.type?.message ?? ''}
       />
+
       <TextField
-        label="Title"
-        required
+        label="Title*"
         {...register('title', {
           required: { value: true, message: 'Title is required' },
           maxLength: { value: 20, message: 'Max Length is 20' }
@@ -68,8 +67,7 @@ export default ({
           <Typography>{`${index + 1}.`}</Typography>
 
           <TextField
-            required
-            label="Option Content"
+            label="Option Content*"
             {...register(`options.${index}.content`, {
               required: { value: true, message: 'Content is required' },
               maxLength: { value: 20, message: 'Max Length is 20' }

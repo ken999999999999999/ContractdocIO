@@ -26,4 +26,6 @@ export { default as Checkbox } from './Checkbox';
 
 export { default as RichTextEditor } from './RichTextEditor';
 
-export { default as Steps } from './Steps/Steps';
+export { default as Steps } from './Steps';
+
+export { default as SuccessResult } from './SuccessResult';

@@ -1,4 +1,12 @@
-import { Card, Loading, Stack, Steps, Button } from '@/lib';
+import {
+  Card,
+  Loading,
+  Stack,
+  Steps,
+  Button,
+  SuccessResult,
+  AddButton
+} from '@/lib';
 import { useCreateContract } from '@/api/Contracts';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { CreateContractCommand } from '@/api/web-api-client';
@@ -6,6 +14,8 @@ import { ContractForm, ContractPreview } from '@/components/Contracts';
 import { useCallback, useEffect, useState } from 'react';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import UndoIcon from '@mui/icons-material/Undo';
+import { Link } from 'react-router-dom';
 
 const steps = [
   {
@@ -17,7 +27,7 @@ const steps = [
     key: 'preview'
   },
   {
-    title: 'Create Success',
+    title: 'Finish',
     key: 'success'
   }
 ];
@@ -70,7 +80,20 @@ export default (): JSX.Element => {
       />
     ),
     preview: <ContractPreview {...formValue} />,
-    success: <></>
+    success: (
+      <SuccessResult
+        title="Successfully created contract"
+        description="Now you can send the contract to others."
+        actions={[
+          <AddButton onClick={() => location.reload()}>Create again</AddButton>,
+          <Link to="/built-contracts/">
+            <Button variant="contained" startIcon={<UndoIcon />}>
+              Go Back
+            </Button>
+          </Link>
+        ]}
+      />
+    )
   };
 
   return (
@@ -79,22 +102,20 @@ export default (): JSX.Element => {
       <form onSubmit={handleSubmit(onSubmit)}>
         {content[currentStep]}
         <Stack justifyContent="flex-end" marginTop={3}>
-          <Button
-            hidden={currentStep !== 'preview'}
-            color="secondary"
-            startIcon={<ArrowBackIosIcon />}
-            onClick={() => setCurrentStep('create')}
-          >
-            Previous
-          </Button>
-
-          <Button
-            type="submit"
-            endIcon={<ArrowForwardIosIcon />}
-            hidden={currentStep === 'success'}
-          >
-            {currentStep === 'create' ? 'Next' : 'Confirm'}
-          </Button>
+          {currentStep === 'preview' && (
+            <Button
+              color="secondary"
+              startIcon={<ArrowBackIosIcon />}
+              onClick={() => setCurrentStep('create')}
+            >
+              Previous
+            </Button>
+          )}
+          {currentStep !== 'success' && (
+            <Button type="submit" endIcon={<ArrowForwardIosIcon />}>
+              {currentStep === 'create' ? 'Next' : 'Confirm'}
+            </Button>
+          )}
         </Stack>
       </form>
 
