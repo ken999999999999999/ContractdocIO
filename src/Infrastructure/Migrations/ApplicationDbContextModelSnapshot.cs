@@ -55,7 +55,7 @@ namespace ContractdocIO.Infrastructure.Migrations
 
                     b.HasIndex("SignedContractId");
 
-                    b.ToTable("CheckOption");
+                    b.ToTable("CheckOptions");
                 });
 
             modelBuilder.Entity("ContractdocIO.Domain.Entities.Contract", b =>
@@ -243,8 +243,14 @@ namespace ContractdocIO.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<DateTime>("Sent")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Signature")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Signed")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -263,7 +269,7 @@ namespace ContractdocIO.Infrastructure.Migrations
                     b.HasIndex("ReferenceCode")
                         .IsUnique();
 
-                    b.ToTable("SignedContract");
+                    b.ToTable("SignedContracts");
                 });
 
             modelBuilder.Entity("Duende.IdentityServer.EntityFramework.Entities.DeviceFlowCodes", b =>
