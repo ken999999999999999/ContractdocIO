@@ -8,6 +8,7 @@ global using AutoMapper;
 global using AutoMapper.QueryableExtensions;
 global using ContractdocIO.Application.Common.Mappings;
 global using ContractdocIO.Application.Common.Models;
-global using ContractdocIO.Domain.Common;
+global using ContractdocIO.Application.Common.Dto;
 global using ContractdocIO.Domain.Entities;
 global using ContractdocIO.Application.Common.Exceptions;
+global using FluentValidation;

@@ -1,5 +1,4 @@
-﻿using ContractdocIO.Application.Common.Dto;
-namespace ContractdocIO.Application.Contracts.Dto;
+﻿namespace ContractdocIO.Application.Contracts.Dto;
 
 public class ContractDto : BaseAuditableEntityDto, IMapFrom<Contract>
 {

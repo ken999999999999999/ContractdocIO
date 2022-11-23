@@ -17,7 +17,7 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<IOUser>, IApplicat
         DbContextOptions<ApplicationDbContext> options,
         IOptions<OperationalStoreOptions> operationalStoreOptions,
         IMediator mediator,
-        AuditableEntitySaveChangesInterceptor auditableEntitySaveChangesInterceptor) 
+        AuditableEntitySaveChangesInterceptor auditableEntitySaveChangesInterceptor)
         : base(options, operationalStoreOptions)
     {
         _mediator = mediator;
@@ -27,6 +27,10 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<IOUser>, IApplicat
     public DbSet<Contract> Contracts => Set<Contract>();
 
     public DbSet<Option> Options => Set<Option>();
+
+    public DbSet<CheckOption> CheckOptions => Set<CheckOption>();
+
+    public DbSet<SignedContract> SignedContracts => Set<SignedContract>();
 
     public DbSet<IOUser> IOUsers => base.Set<IOUser>();
 

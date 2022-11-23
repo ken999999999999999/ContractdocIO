@@ -1,7 +1,4 @@
-﻿using ContractdocIO.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-
-namespace ContractdocIO.Application.Common.Interfaces;
+﻿namespace ContractdocIO.Application.Common.Interfaces;
 
 public interface IApplicationDbContext
 {
@@ -10,6 +7,9 @@ public interface IApplicationDbContext
     DbSet<Option> Options { get; }
 
     DbSet<IOUser> IOUsers { get;}
+    DbSet<CheckOption> CheckOptions { get; }
+
+    DbSet<SignedContract> SignedContracts { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

@@ -10,6 +10,4 @@ public class CheckOption : BaseEntity
     public int Order { get; set; }
     public bool IsChecked { get; set; }
 
-
-
 }

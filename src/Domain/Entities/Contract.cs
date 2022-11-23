@@ -16,9 +16,10 @@ public class Contract : BaseAuditableEntity
     public IOUser OwnedByUser { get; set; } = null!;
 
 
-    public SignedContract Send(string email, string receivedByUserId) => new SignedContract
+    public SignedContract Send(string email, string? receivedByUserId) => new SignedContract
     {
         ContractId = Id,
+        ReferenceCode = Guid.NewGuid().ToString(),
         Content = Content,
         Type = Type,
         Title = Title,

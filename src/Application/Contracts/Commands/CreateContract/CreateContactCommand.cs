@@ -1,6 +1,4 @@
-﻿using ContractdocIO.Domain.Entities;
-
-namespace ContractdocIO.Application.Contracts.Commands.CreateContract;
+﻿namespace ContractdocIO.Application.Contracts.Commands.CreateContract;
 
 public record CreateContractCommand : IRequest<int>
 {
