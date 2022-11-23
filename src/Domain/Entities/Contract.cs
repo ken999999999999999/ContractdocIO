@@ -11,11 +11,21 @@ public class Contract : BaseAuditableEntity
     public string Title { get; set; } = default!;
 
     public int Version { get; set; } = 1;
+    public IList<Option> Options { get; set; } = new List<Option>();
+    public string OwnedByUserId { get; set; } = default!;
+    public IOUser OwnedByUser { get; set; } = null!;
 
-    public IList<Option> Options = new List<Option>();
 
-    public string OwnedByUserId = default!;
+    public SignedContract Send(string email, string receivedByUserId) => new SignedContract
+    {
+        ContractId = Id,
+        Content = Content,
+        Type = Type,
+        Title = Title,
+        ReceivedByEmail = email,
+        ReceivedByUserId = receivedByUserId,
+        CheckOptions = Options.Select(option => option.ToCheckOption()).ToList(),
+    };
 
-    public IOUser OwnedByUser = null!;
 }
 

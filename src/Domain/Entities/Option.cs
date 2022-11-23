@@ -11,5 +11,15 @@ public class Option : BaseEntity
     public bool IsRequired { get; set; } = false;
 
     public int Order { get; set; }
+
+    public CheckOption ToCheckOption() => new CheckOption
+    {
+        OptionId = Id,
+        Content = Content,
+        IsRequired = IsRequired,
+        Order = Order,
+    };
+
+
 }
 
