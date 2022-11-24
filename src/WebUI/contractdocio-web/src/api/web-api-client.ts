@@ -480,6 +480,7 @@ export interface SignedContractBriefDto extends BaseAuditableEntityDto {
     contractOwnedByUser?: IOUserDto;
     type?: string;
     title?: string;
+    receivedByEmail?: string;
     signed?: Date | undefined;
     sent?: Date;
 }

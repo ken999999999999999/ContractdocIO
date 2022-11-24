@@ -1,9 +1,9 @@
-import SendIcon from '@mui/icons-material/Send';
 import IndexPage from '@/pages/index';
 import NotFoundPage from '@/pages/404';
-import ContractsPage from '@/pages/contracts';
-import CreateContractPage from '@/pages/contracts/create-contract';
-import ContractDetailPage from '@/pages/contracts/[contractId]';
+import ContractsPage from '@/pages/built-contracts';
+import CreateContractPage from '@/pages/built-contracts/create-contract';
+import ContractDetailPage from '@/pages/built-contracts/[contractId]';
+import SentContractsPage from '@/pages/sent-contract';
 
 interface IRouteList {
   link: string;
@@ -21,7 +21,7 @@ const RouteList: Array<IRouteList> = [
   {
     link: '/sent-contract/',
     title: 'Sent Contracts',
-    jsx: <SendIcon />
+    jsx: <SentContractsPage />
   },
   {
     link: '/built-contracts/',

@@ -1,14 +1,15 @@
-import { Card, DataGrid } from '@/lib';
+import { AddButton, Card, DataGrid } from '@/lib';
 import { useState } from 'react';
 import {
   useGetSignedContractsWithPagination,
   IGetSignedContractsWithPagination
 } from '@/api/SignedContracts';
-import { SignedContractBriefDto } from '@/api/web-api-client';
 import { GridColDef } from '@mui/x-data-grid';
+import { SignedContractBriefDto } from '@/api/web-api-client';
+import { Link } from 'react-router-dom';
 
 const initParams: IGetSignedContractsWithPagination = {
-  isSentFromMySelf: false,
+  isSentFromMySelf: true,
   isSigned: null,
   pageNumber: 1,
   pageSize: 10,
@@ -25,6 +26,11 @@ const columns: GridColDef<any, SignedContractBriefDto>[] = [
     field: 'contractOwnedByUser',
     headerName: `Sender's Email`,
     renderCell: ({ value }) => value?.contractOwnedByUser?.email ?? ''
+  },
+  {
+    field: '',
+    headerName: `Receiver's Email`,
+    renderCell: ({ value }) => value?.contractOwnedByUser?.email ?? ''
   }
 ];
 
@@ -35,7 +41,14 @@ export default (): JSX.Element => {
   const { isLoading, data } = useGetSignedContractsWithPagination(params);
 
   return (
-    <Card header="Received Contracts">
+    <Card
+      header="Sent Contracts"
+      action={
+        <Link to="/built-contracts/">
+          <AddButton>Send Contract</AddButton>
+        </Link>
+      }
+    >
       <DataGrid
         loading={isLoading}
         data={data}

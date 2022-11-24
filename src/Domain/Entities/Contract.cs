@@ -16,7 +16,7 @@ public class Contract : BaseAuditableEntity
     public IOUser OwnedByUser { get; set; } = null!;
 
 
-    public SignedContract Send(string email, string? receivedByUserId) => new SignedContract
+    public SignedContract Send(string email) => new SignedContract
     {
         ContractId = Id,
         ReferenceCode = Guid.NewGuid().ToString(),
@@ -24,7 +24,6 @@ public class Contract : BaseAuditableEntity
         Type = Type,
         Title = Title,
         ReceivedByEmail = email,
-        ReceivedByUserId = receivedByUserId,
         CheckOptions = Options.Select(option => option.ToCheckOption()).ToList(),
     };
 

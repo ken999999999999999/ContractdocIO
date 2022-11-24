@@ -231,7 +231,6 @@ namespace ContractdocIO.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ReceivedByUserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ReferenceCode")
@@ -588,9 +587,7 @@ namespace ContractdocIO.Infrastructure.Migrations
 
                     b.HasOne("ContractdocIO.Domain.Entities.IOUser", "ReceivedByUser")
                         .WithMany("SignedContracts")
-                        .HasForeignKey("ReceivedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ReceivedByUserId");
 
                     b.Navigation("Contract");
 

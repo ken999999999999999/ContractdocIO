@@ -273,7 +273,7 @@ namespace ContractdocIO.Infrastructure.Migrations
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ReceivedByEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ReceivedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ReceivedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Signature = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Signed = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Sent = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -289,8 +289,7 @@ namespace ContractdocIO.Infrastructure.Migrations
                         name: "FK_SignedContracts_AspNetUsers_ReceivedByUserId",
                         column: x => x.ReceivedByUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_SignedContracts_Contracts_ContractId",
                         column: x => x.ContractId,

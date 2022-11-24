@@ -3,6 +3,7 @@ public class SignedContractBriefDto : BaseAuditableEntityDto, IMapFrom<SignedCon
 {
     public string Type { get; set; } = default!;
     public string Title { get; set; } = default!;
+    public string ReceivedByEmail { get; set; } = default!;
     public DateTime? Signed { get; set; }
     public DateTime Sent { get; set; }
 

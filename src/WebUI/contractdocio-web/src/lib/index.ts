@@ -31,3 +31,5 @@ export { default as RichTextEditor } from './RichTextEditor';
 export { default as Steps } from './Steps';
 
 export { default as SuccessResult } from './SuccessResult';
+
+export { default as FormDialog } from './FormDialog';

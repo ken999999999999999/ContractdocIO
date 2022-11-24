@@ -1,5 +1,8 @@
-import { SignedContractsClient } from './web-api-client';
-import { useQuery } from '@tanstack/react-query';
+import {
+  CreateSignedContractCommand,
+  SignedContractsClient
+} from './web-api-client';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 const client = new SignedContractsClient(window.location.origin);
 
@@ -21,3 +24,9 @@ export const useGetSignedContractsWithPagination = (
       args.isOrderByAsc
     )
   );
+
+export const useCreateSignedContract = () =>
+  useMutation({
+    mutationKey: ['contract', 'create'],
+    mutationFn: (command: CreateSignedContractCommand) => client.create(command)
+  });

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContractdocIO.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221124135011_init")]
+    [Migration("20221124161239_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -233,7 +233,6 @@ namespace ContractdocIO.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ReceivedByUserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ReferenceCode")
@@ -590,9 +589,7 @@ namespace ContractdocIO.Infrastructure.Migrations
 
                     b.HasOne("ContractdocIO.Domain.Entities.IOUser", "ReceivedByUser")
                         .WithMany("SignedContracts")
-                        .HasForeignKey("ReceivedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ReceivedByUserId");
 
                     b.Navigation("Contract");
 

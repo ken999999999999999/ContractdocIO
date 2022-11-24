@@ -1,6 +1,6 @@
 import { useGetContractById } from '@/api/Contracts';
-import { ContractPreview } from '@/components/Contracts';
-import { Card, Stack, SubmitButton, EditButton } from '@/lib';
+import { ContractPreview, SendContractButton } from '@/components/Contracts';
+import { Card, Stack, EditButton } from '@/lib';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
@@ -28,7 +28,7 @@ export default () => {
           >
             <EditButton>Edit</EditButton>
           </Link>
-          <SubmitButton>Send</SubmitButton>
+          <SendContractButton contractId={+(contractId ?? '')} />
         </Stack>
       }
       loading={isLoading}
