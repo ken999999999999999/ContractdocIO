@@ -31,16 +31,7 @@ public class CreateSignedContractCommandHandler : IRequestHandler<CreateSignedCo
         }
 
 
- 
-
-        var entity = contract.Send(request.Email);
-
-        var userId = await _context.IOUsers.Where(a => a.Email == request.Email).Select(a => a.Id).FirstOrDefaultAsync();
-
-        if (!string.IsNullOrEmpty(userId))
-        {
-            entity.ReceivedByUserId = userId;
-        }
+        var entity = contract.Send(request.Email, await _context.IOUsers.Where(a => a.Email == request.Email).Select(a => a.Id).FirstOrDefaultAsync());
 
         _context.SignedContracts.Add(entity);
 
