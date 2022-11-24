@@ -305,7 +305,6 @@ namespace ContractdocIO.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    OptionId = table.Column<int>(type: "int", nullable: false),
                     SignedContractId = table.Column<int>(type: "int", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsRequired = table.Column<bool>(type: "bit", nullable: false),
@@ -315,12 +314,6 @@ namespace ContractdocIO.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CheckOptions", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_CheckOptions_Options_OptionId",
-                        column: x => x.OptionId,
-                        principalTable: "Options",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_CheckOptions_SignedContracts_SignedContractId",
                         column: x => x.SignedContractId,
@@ -367,11 +360,6 @@ namespace ContractdocIO.Infrastructure.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CheckOptions_OptionId",
-                table: "CheckOptions",
-                column: "OptionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CheckOptions_SignedContractId",
@@ -474,13 +462,13 @@ namespace ContractdocIO.Infrastructure.Migrations
                 name: "Keys");
 
             migrationBuilder.DropTable(
+                name: "Options");
+
+            migrationBuilder.DropTable(
                 name: "PersistedGrants");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "Options");
 
             migrationBuilder.DropTable(
                 name: "SignedContracts");

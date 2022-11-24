@@ -22,7 +22,7 @@ public class GetContractQueryHandler : IRequestHandler<GetContractQuery, Contrac
 
     public async Task<ContractDto> Handle(GetContractQuery request, CancellationToken cancellationToken)
     {
-        return await _context.Contracts
+        return await _context.Contracts.AsNoTracking()
             .Where(a => a.OwnedByUserId == _currentUserService.UserId)
             .Where(a => a.Id == request.Id)
             .ProjectTo<ContractDto>(_mapper.ConfigurationProvider)

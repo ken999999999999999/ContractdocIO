@@ -40,9 +40,6 @@ namespace ContractdocIO.Infrastructure.Migrations
                     b.Property<bool>("IsRequired")
                         .HasColumnType("bit");
 
-                    b.Property<int>("OptionId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Order")
                         .HasColumnType("int");
 
@@ -50,8 +47,6 @@ namespace ContractdocIO.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OptionId");
 
                     b.HasIndex("SignedContractId");
 
@@ -552,19 +547,11 @@ namespace ContractdocIO.Infrastructure.Migrations
 
             modelBuilder.Entity("ContractdocIO.Domain.Entities.CheckOption", b =>
                 {
-                    b.HasOne("ContractdocIO.Domain.Entities.Option", "Option")
-                        .WithMany()
-                        .HasForeignKey("OptionId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("ContractdocIO.Domain.Entities.SignedContract", "SignedContract")
                         .WithMany("CheckOptions")
                         .HasForeignKey("SignedContractId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Option");
 
                     b.Navigation("SignedContract");
                 });

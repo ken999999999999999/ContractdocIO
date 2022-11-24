@@ -14,7 +14,6 @@ public class Option : BaseEntity
 
     public CheckOption ToCheckOption() => new CheckOption
     {
-        OptionId = Id,
         Content = Content,
         IsRequired = IsRequired,
         Order = Order,

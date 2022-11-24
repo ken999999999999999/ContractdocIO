@@ -1,3 +1,2 @@
-﻿namespace ContractdocIO.Infrastructure.Persistence.Configurations;public class CheckOptionConfiguration : IEntityTypeConfiguration<CheckOption>{    public void Configure(EntityTypeBuilder<CheckOption> builder)    {        builder.HasOne(t => t.Option).WithMany().HasForeignKey(a=>a.OptionId).OnDelete(DeleteBehavior.Restrict);
-
+﻿namespace ContractdocIO.Infrastructure.Persistence.Configurations;public class CheckOptionConfiguration : IEntityTypeConfiguration<CheckOption>{    public void Configure(EntityTypeBuilder<CheckOption> builder)    {
         builder.HasOne(t => t.SignedContract).WithMany(a=>a.CheckOptions).HasForeignKey(a => a.SignedContractId);    }}

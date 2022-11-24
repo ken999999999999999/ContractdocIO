@@ -25,7 +25,7 @@ public class GetContractsWithPaginationQueryHandler : IRequestHandler<GetContrac
 
     public async Task<PaginatedList<ContractBriefDto>> Handle(GetContractsWithPaginationQuery request, CancellationToken cancellationToken)
     {
-        return await _context.Contracts
+        return await _context.Contracts.AsNoTracking()
             .Where(a => a.OwnedByUserId == _currentUserService.UserId)
             .ProjectTo<ContractBriefDto>(_mapper.ConfigurationProvider)
             .PaginatedListAsync(request);

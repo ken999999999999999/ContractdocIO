@@ -26,7 +26,7 @@ public class GetSignedContractsWithPaginationQueryHandler : IRequestHandler<GetS
 
     public async Task<PaginatedList<SignedContractBriefDto>> Handle(GetSignedContractsWithPaginationQuery request, CancellationToken cancellationToken)
     {
-        return await _context.SignedContracts
+        return await _context.SignedContracts.AsNoTracking()
             .WhereIf(request.IsSentFromMySelf, a => a.Contract.OwnedByUserId == _currentUserService.UserId)
             .WhereIf(!request.IsSentFromMySelf, a => a.ReceivedByUserId == _currentUserService.UserId)
             .WhereIf(request.IsSigned.HasValue, a => string.IsNullOrEmpty(a.Signature) != request.IsSigned)
