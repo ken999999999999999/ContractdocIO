@@ -34,7 +34,7 @@ Contract.IO provides a platform to help people create, customize and manage thei
 3. Navigate to `src/WebUI` and launch the API service using `dotnet run`
 4. Navigate to 'contractdocio-web'
 5. Run `npm install` to install packeage
-6. Run `npm start` to launch the frontend service using `npm start`
+6. Run `npm start` to launch the frontend service
 
 ### Database Migrations
 
