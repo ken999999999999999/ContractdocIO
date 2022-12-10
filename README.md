@@ -1,25 +1,40 @@
-# ContractdocIO
+# Contract.IO
 > A Single Page App(SPA) with ReactJS and ASP.NET Core following the principles of Clean Architecture.
+
+Contract.IO provides a platform to help people create, customize and manage their contracts. 
 
 ## Learn about Clean Architecture
 
 [![Clean Architecture with ASP.NET Core 3.0 • Jason Taylor • GOTO 2019](https://img.youtube.com/vi/dK4Yb6-LxAk/0.jpg)](https://www.youtube.com/watch?v=dK4Yb6-LxAk)
 
+
 ## Technologies
 
-* [ASP.NET Core 6](https://docs.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core)
-* [Entity Framework Core 6](https://docs.microsoft.com/en-us/ef/core/)
-* [ReactJS](https://reactjs.org/)
+### Backend
+
+* [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core)
+* [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/)
 * [MediatR](https://github.com/jbogard/MediatR)
 * [AutoMapper](https://automapper.org/)
 * [FluentValidation](https://fluentvalidation.net/)
 * [NUnit](https://nunit.org/), [FluentAssertions](https://fluentassertions.com/), [Moq](https://github.com/moq) & [Respawn](https://github.com/jbogard/Respawn)
 
+### Frontend
+* [ReactJS](https://reactjs.org/)
+* [TypeScript](https://www.typescriptlang.org/)
+* [React Router](https://reactrouter.com/en/main)
+* [MUI](https://mui.com/)
+* [TanStack Query](https://tanstack.com/query/v4)
 
 ## Getting Started
 
-Install the latest .NET 6 SDK
-Install the latest Node.js LTS
+### Set Up Environment & Lanuch the Project
+1. Install the latest .NET SDK
+2. Install the latest Node.js LTS
+3. Navigate to `src/WebUI` and launch the API service using `dotnet run`
+4. Navigate to 'contractdocio-web'
+5. Run `npm install` to install packeage
+6. Run `npm start` to launch the frontend service using `npm start`
 
 ### Database Migrations
 
@@ -50,4 +65,8 @@ This layer contains classes for accessing external resources such as file system
 
 ### WebUI
 
-This layer is a single page application based on ReactJS and ASP.NET Core 6. This layer depends on both the Application and Infrastructure layers, however, the dependency on Infrastructure is only to support dependency injection. Therefore only *Startup.cs* should reference Infrastructure.
+This layer is a single page application based on ReactJS and ASP.NET Core. This layer depends on both the Application and Infrastructure layers, however, the dependency on Infrastructure is only to support dependency injection. Therefore only *Startup.cs* should reference Infrastructure.
+
+## Reference
+
+* [Clean Architecture Solution Template with ASP.NET Core 7](https://github.com/jasontaylordev/CleanArchitecture)
