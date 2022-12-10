@@ -70,3 +70,4 @@ This layer is a single page application based on ReactJS and ASP.NET Core. This 
 ## Reference
 
 * [Clean Architecture Solution Template with ASP.NET Core 7](https://github.com/jasontaylordev/CleanArchitecture)
+* [Create-React-App](https://github.com/facebook/create-react-app)
