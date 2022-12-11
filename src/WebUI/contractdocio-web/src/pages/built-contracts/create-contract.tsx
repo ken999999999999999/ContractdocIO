@@ -7,10 +7,12 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import UndoIcon from '@mui/icons-material/Undo';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export default (): JSX.Element => {
   const { search } = useLocation();
+
+  const navigate = useNavigate();
 
   const parentContractId = useMemo(() => {
     const params = new URLSearchParams(search);
@@ -130,6 +132,11 @@ export default (): JSX.Element => {
       <form onSubmit={handleSubmit(onSubmit)}>
         {content[currentStep]}
         <Stack justifyContent="flex-end" marginTop={3}>
+          {currentStep !== 'success' && (
+            <Button color="warning" onClick={() => navigate(-1)}>
+              Cancel
+            </Button>
+          )}
           {currentStep === 'preview' && (
             <Button
               color="secondary"
