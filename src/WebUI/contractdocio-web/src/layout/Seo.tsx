@@ -7,7 +7,7 @@ export default (): JSX.Element => {
       <title>Contract.IO</title>
       <meta name="description" content="App Description" />
       <meta name="theme-color" content="#008f68" />
-      <link id="favicon" rel="icon" href={icon} type="image/svg" />
+      <link rel="icon" type="image/svg" href={icon} sizes="16x16" />
     </Helmet>
   );
 };
