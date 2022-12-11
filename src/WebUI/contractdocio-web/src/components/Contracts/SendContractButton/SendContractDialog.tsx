@@ -48,11 +48,12 @@ export default forwardRef<ISendContractDialogRef, ISendContractDialog>(
     }, [open]);
 
     useEffect(() => {
-      if (command.isSuccess) {
+      if (command.isSuccess && open) {
+        command.reset();
         SnackbarUtils.success('Send Successfully! ');
         setOpen(false);
       }
-    }, [command]);
+    }, [command, open]);
 
     return (
       <FormDialog
