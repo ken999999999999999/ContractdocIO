@@ -1,18 +1,23 @@
-import { useGetContractById } from '@/api/Contracts';
-import { ContractPreview } from '@/components/Contracts';
-import { Card } from '@/lib';
+import { useGetSignedContractById } from '@/api/SignedContracts';
+import { SignedContractContent } from '@/components/SignedContracts';
+import { Box, Card } from '@/lib';
+import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 export default () => {
   const { signedContractId } = useParams();
-  const { isLoading, data: contract } = useGetContractById(signedContractId);
+  const { isLoading, data: signedContract } =
+    useGetSignedContractById(signedContractId);
+
+  const signable = useMemo(() => !signedContract?.signed, [signedContract]);
+
   return (
     <Card
       header={
-        contract ? (
+        signedContract ? (
           <>
-            <strong>{`${contract?.type ?? ''}`}</strong>&nbsp;-&nbsp;
-            {`${contract?.title ?? ''} (Version:${contract?.version ?? ''})`}
+            <strong>{`${signedContract?.type ?? ''}`}</strong>&nbsp;-&nbsp;
+            {signedContract?.title ?? ''}
           </>
         ) : (
           ''
@@ -20,7 +25,20 @@ export default () => {
       }
       loading={isLoading}
     >
-      <ContractPreview {...contract} />
+      <Box
+        border="1px solid"
+        p={2}
+        maxWidth={1200}
+        marginLeft="auto"
+        marginRight="auto"
+      >
+        <SignedContractContent
+          showSignature={signable}
+          fromEmail={signedContract?.contractOwnedByUser?.email ?? ''}
+          toEmail={signedContract?.receivedByEmail ?? ''}
+          {...signedContract}
+        />
+      </Box>
     </Card>
   );
 };

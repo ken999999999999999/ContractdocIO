@@ -25,6 +25,13 @@ export const useGetSignedContractsWithPagination = (
     )
   );
 
+export const useGetSignedContractById = (signedContractId?: string | null) =>
+  useQuery({
+    queryKey: ['signedContract', signedContractId],
+    queryFn: () => client.get(+(signedContractId ?? '')),
+    enabled: !!signedContractId
+  });
+
 export const useCreateSignedContract = () =>
   useMutation({
     mutationKey: ['contract', 'create'],

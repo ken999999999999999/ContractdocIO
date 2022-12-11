@@ -5,14 +5,18 @@ import 'react-quill/dist/quill.snow.css';
 import ReactQuill from 'react-quill';
 import signature from '@/asset/signature.png';
 
-interface IContractPreview {
+interface ISignedContractPreview {
   content?: string;
   type?: string;
   title?: string;
   options?: OptionInputDto[];
 }
 
-export default ({ title, content, options }: IContractPreview): JSX.Element => {
+export default ({
+  title,
+  content,
+  options
+}: ISignedContractPreview): JSX.Element => {
   return (
     <>
       <Box
@@ -30,17 +34,13 @@ export default ({ title, content, options }: IContractPreview): JSX.Element => {
         <ReactQuill theme="bubble" readOnly value={content} />
         {options?.length ? (
           <FormGroup>
-            {options
-              .sort((a, b) => (a?.order ?? 0) - (b?.order ?? 0))
-              .map((option, index) => (
-                <FormControlLabel
-                  key={`options${index}`}
-                  control={<Checkbox disabled />}
-                  label={`${option.content ?? ''}${
-                    option.isRequired ? '*' : ''
-                  }`}
-                />
-              ))}
+            {options?.map((option, index) => (
+              <FormControlLabel
+                key={`options${index}`}
+                control={<Checkbox disabled />}
+                label={`${option.content ?? ''}${option.isRequired ? '*' : ''}`}
+              />
+            ))}
           </FormGroup>
         ) : null}
       </Box>

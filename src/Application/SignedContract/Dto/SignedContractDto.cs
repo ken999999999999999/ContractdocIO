@@ -11,5 +11,5 @@ public class SignedContractDto : BaseAuditableEntityDto, IMapFrom<SignedContract
 
     public IOUserDto ContractOwnedByUser { get; set; }
 
-    public IList<CheckOptionDto> CheckOptions = new List<CheckOptionDto>();
+    public IList<CheckOptionDto> CheckOptions { get; set; } = new List<CheckOptionDto>();
 }

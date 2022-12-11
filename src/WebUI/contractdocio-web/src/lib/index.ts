@@ -35,3 +35,5 @@ export { default as SuccessResult } from './SuccessResult';
 export { default as FormDialog } from './FormDialog';
 
 export { default as BoolIcon } from './BoolIcon';
+
+export { default as EmailChip } from './EmailChip';
