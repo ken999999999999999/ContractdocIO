@@ -9,6 +9,8 @@ public class SignedContractDto : BaseAuditableEntityDto, IMapFrom<SignedContract
     public DateTime? Signed { get; set; }
     public DateTime Sent { get; set; }
 
+    public string? ReceivedByUserId { get; set; }
+
     public IOUserDto ContractOwnedByUser { get; set; }
 
     public IList<CheckOptionDto> CheckOptions { get; set; } = new List<CheckOptionDto>();

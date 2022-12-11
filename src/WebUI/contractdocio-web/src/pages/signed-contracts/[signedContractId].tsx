@@ -1,15 +1,26 @@
 import { useGetSignedContractById } from '@/api/SignedContracts';
-import { SignedContractContent } from '@/components/SignedContracts';
+import {
+  SignedContractContent,
+  SignedContractSubmit
+} from '@/components/SignedContracts';
 import { Box, Card } from '@/lib';
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
+import { useAuth } from 'react-oidc-context';
 
 export default () => {
   const { signedContractId } = useParams();
   const { isLoading, data: signedContract } =
     useGetSignedContractById(signedContractId);
 
-  const signable = useMemo(() => !signedContract?.signed, [signedContract]);
+  const auth = useAuth();
+
+  const signable = useMemo(
+    () =>
+      !signedContract?.signed &&
+      auth?.user?.profile.sub === signedContract?.receivedByUserId,
+    [signedContract]
+  );
 
   return (
     <Card
@@ -33,11 +44,18 @@ export default () => {
         marginRight="auto"
       >
         <SignedContractContent
-          showSignature={signable}
+          showSignature={!signable}
           fromEmail={signedContract?.contractOwnedByUser?.email ?? ''}
           toEmail={signedContract?.receivedByEmail ?? ''}
           {...signedContract}
         />
+
+        {signable && (
+          <SignedContractSubmit
+            signedContractId={+(signedContractId ?? 0)}
+            checkOptions={signedContract?.checkOptions}
+          />
+        )}
       </Box>
     </Card>
   );

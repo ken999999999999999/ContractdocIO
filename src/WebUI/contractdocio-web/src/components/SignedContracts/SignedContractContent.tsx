@@ -12,7 +12,7 @@ interface ISignedContractPreview {
   signature?: string;
   toEmail: string;
   fromEmail: string;
-  signed?: string;
+  signed?: Date;
 }
 
 export default ({
@@ -53,26 +53,30 @@ export default ({
             ))}
         </FormGroup>
       )}
-      <Box width={450} height={200} marginLeft="auto" marginRight="auto">
-        <Box
-          border="0.5px solid gray"
-          width={450}
-          height={150}
-          marginLeft="auto"
-          marginRight="auto"
-          marginTop={3}
-          p={2}
-        >
-          {showSignature && signature && (
-            <img
-              alt="signature"
-              src={signature}
-              style={{ margin: 'auto', display: 'block', width: '400px' }}
-            />
-          )}
+      {showSignature && (
+        <Box width={450} height={200} marginLeft="auto" marginRight="auto">
+          <Box
+            border="0.5px solid gray"
+            width={450}
+            height={150}
+            marginLeft="auto"
+            marginRight="auto"
+            marginTop={3}
+            p={2}
+          >
+            {signature && (
+              <img
+                alt="signature"
+                src={signature}
+                style={{ margin: 'auto', display: 'block', width: '400px' }}
+              />
+            )}
+          </Box>
+          <Typography variant="overline">
+            Date: {signed?.toString() ?? 'Not signed yet'}
+          </Typography>
         </Box>
-        <Typography variant="overline">Date: {signed ?? ''}</Typography>
-      </Box>
+      )}
     </>
   );
 };

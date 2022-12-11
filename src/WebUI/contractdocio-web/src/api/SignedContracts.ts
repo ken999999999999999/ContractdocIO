@@ -1,6 +1,7 @@
 import {
   CreateSignedContractCommand,
-  SignedContractsClient
+  SignedContractsClient,
+  UpdateSignedContractCommand
 } from './web-api-client';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
@@ -36,4 +37,11 @@ export const useCreateSignedContract = () =>
   useMutation({
     mutationKey: ['contract', 'create'],
     mutationFn: (command: CreateSignedContractCommand) => client.create(command)
+  });
+
+export const useUpdateSignedContract = () =>
+  useMutation({
+    mutationKey: ['contract', 'update'],
+    mutationFn: (command: UpdateSignedContractCommand) =>
+      client.update(command.id ?? 0, command)
   });

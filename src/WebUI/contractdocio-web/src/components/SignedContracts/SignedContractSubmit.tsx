@@ -1,64 +1,118 @@
-import { OptionInputDto } from '@/api/web-api-client';
-import { FormControlLabel, FormGroup, Typography } from '@mui/material';
-import { Box, Checkbox } from '@/lib';
+import {
+  FormControlLabel,
+  FormGroup,
+  FormHelperText,
+  Typography
+} from '@mui/material';
 import 'react-quill/dist/quill.snow.css';
-import ReactQuill from 'react-quill';
-import signature from '@/asset/signature.png';
+import { CheckOptionDto } from '@/api/web-api-client';
+import { Box, Button, Checkbox, Stack } from '@/lib';
+import { useCallback, useRef } from 'react';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useUpdateSignedContract } from '@/api/SignedContracts';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import SignatureCanvas from 'react-signature-canvas';
+import { useNavigate } from 'react-router-dom';
 
-interface ISignedContractPreview {
-  content?: string;
-  type?: string;
-  title?: string;
-  options?: OptionInputDto[];
+interface ISignedContractSubmit {
+  signedContractId: number;
+  checkOptions?: CheckOptionDto[];
+}
+
+interface ISubmitForm {
+  [key: string]: boolean;
 }
 
 export default ({
-  title,
-  content,
-  options
-}: ISignedContractPreview): JSX.Element => {
+  signedContractId,
+  checkOptions
+}: ISignedContractSubmit): JSX.Element => {
+  const signRef = useRef(null);
+  const {
+    handleSubmit,
+    control,
+    formState: { errors }
+  } = useForm<ISubmitForm>({
+    criteriaMode: 'all'
+  });
+
+  const command = useUpdateSignedContract();
+
+  const onSubmit: SubmitHandler<ISubmitForm> = useCallback(
+    (value) => {
+      //const
+
+      command.mutate({
+        id: signedContractId,
+        //checkOptionIds: Ob,
+        signature: signRef?.current?.toDataURL()
+      });
+    },
+    [signedContractId]
+  );
+
+  const navigate = useNavigate();
+
   return (
-    <>
-      <Box
-        border="1px solid"
-        p={2}
-        maxWidth={1200}
-        marginLeft="auto"
-        marginRight="auto"
-      >
-        <Typography variant="h5" align="center">
-          <strong>
-            <u>{title}</u>
-          </strong>
-        </Typography>
-        <ReactQuill theme="bubble" readOnly value={content} />
-        {options?.length ? (
-          <FormGroup>
-            {options?.map((option, index) => (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      {checkOptions?.map((checkOption) => (
+        <Controller
+          name={`options${checkOption?.id ?? 0}`}
+          control={control}
+          rules={{
+            required: !checkOption.isRequired && 'This options must be checked!'
+          }}
+          render={({ field: subField }) => (
+            <>
               <FormControlLabel
-                key={`options${index}`}
-                control={<Checkbox disabled />}
-                label={`${option.content ?? ''}${option.isRequired ? '*' : ''}`}
+                control={<Checkbox checked={subField.value} {...subField} />}
+                label={`${checkOption?.content ?? ''}${
+                  !checkOption.isRequired ? '*' : ''
+                }`}
               />
-            ))}
-          </FormGroup>
-        ) : null}
-      </Box>
+              {errors[`options${checkOption?.id ?? 0}`] && (
+                <FormHelperText error>
+                  {errors[`options${checkOption?.id ?? 0}`]?.message}
+                </FormHelperText>
+              )}
+            </>
+          )}
+        />
+      ))}
       <Box
-        border="0.5px solid gray"
         width={450}
-        height={150}
+        height={200}
         marginLeft="auto"
         marginRight="auto"
-        marginTop={3}
-        p={2}
+        marginBottom={3}
       >
-        <img
-          alt="signature"
-          src={signature}
-          style={{ margin: 'auto', display: 'block', width: '400px' }}
+        <Typography variant="overline">Signed here.</Typography>
+        <SignatureCanvas
+          canvasProps={{
+            width: 450,
+            height: 150,
+            style: {
+              border: '0.5px solid gray'
+            }
+          }}
+          ref={signRef}
         />
+        <Button
+          color="error"
+          onClick={() => signRef?.current?.clear()}
+          fullWidth
+        >
+          Clear
+        </Button>
       </Box>
-    </>
+      <Stack justifyContent="flex-end">
+        <Button color="warning" onClick={() => navigate(-1)}>
+          Cancel
+        </Button>
+        <Button type="submit" endIcon={<ArrowForwardIosIcon />}>
+          Submit
+        </Button>
+      </Stack>
+    </form>
   );
 };

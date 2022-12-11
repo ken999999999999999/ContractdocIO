@@ -508,6 +508,7 @@ export interface SignedContractDto extends BaseAuditableEntityDto {
     signature?: string | undefined;
     signed?: Date | undefined;
     sent?: Date;
+    receivedByUserId?: string | undefined;
     contractOwnedByUser?: IOUserDto;
     checkOptions?: CheckOptionDto[];
 }
