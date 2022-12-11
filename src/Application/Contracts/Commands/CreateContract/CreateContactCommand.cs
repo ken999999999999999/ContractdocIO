@@ -35,8 +35,12 @@ public class CreateContractCommandHandler : IRequestHandler<CreateContractComman
 
         if (request.ParentContractId.HasValue)
         {
-            entity.ContractGroupId = await _context.Contracts.Where(a => a.Id == request.ParentContractId).Select(a => a.ContractGroupId).FirstAsync();
+            var parentContract = await _context.Contracts.FirstAsync(a => a.Id == request.ParentContractId);
+            entity.ContractGroupId = parentContract.ContractGroupId;
             entity.Version = (await _context.Contracts.Where(a => a.ContractGroupId == entity.ContractGroupId).MaxAsync(a => a.Version)) + 1;
+            parentContract.IsCurrent = false;
+
+
         }
         else
         {

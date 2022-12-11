@@ -66,6 +66,9 @@ public class ApplicationDbContextInitialiser
             await _userManager.AddToRolesAsync(administrator, new[] { administratorRole.Name });
         }
 
+
+
+
         // Default data
         // Seed, if necessary
 

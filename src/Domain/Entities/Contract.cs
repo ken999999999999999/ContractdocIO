@@ -11,9 +11,14 @@ public class Contract : BaseAuditableEntity
     public string Title { get; set; } = default!;
 
     public int Version { get; set; } = 1;
+
     public IList<Option> Options { get; set; } = new List<Option>();
+
     public string OwnedByUserId { get; set; } = default!;
+
     public IOUser OwnedByUser { get; set; } = null!;
+
+    public bool IsCurrent { get; set; } = true;
 
 
     public SignedContract Send(string email, string? receivedByUserId) => new SignedContract

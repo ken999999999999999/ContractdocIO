@@ -35,6 +35,8 @@ export interface IContractsClient {
 
     getWithPagination(pageNumber: number | undefined, pageSize: number | undefined, orderBy: string | null | undefined, isOrderByAsc: boolean | undefined): Promise<PaginatedListOfContractBriefDto>;
 
+    getWithContractId(contractId: number | undefined, pageNumber: number | undefined, pageSize: number | undefined, orderBy: string | null | undefined, isOrderByAsc: boolean | undefined): Promise<PaginatedListOfContractBriefDto>;
+
     get(id: number): Promise<ContractDto>;
 }
 
@@ -121,6 +123,59 @@ export class ContractsClient extends AuthorizedApiBase implements IContractsClie
     }
 
     protected processGetWithPagination(response: Response): Promise<PaginatedListOfContractBriefDto> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as PaginatedListOfContractBriefDto;
+            return result200;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<PaginatedListOfContractBriefDto>(null as any);
+    }
+
+    getWithContractId(contractId: number | undefined, pageNumber: number | undefined, pageSize: number | undefined, orderBy: string | null | undefined, isOrderByAsc: boolean | undefined): Promise<PaginatedListOfContractBriefDto> {
+        let url_ = this.baseUrl + "/api/Contracts/contractId?";
+        if (contractId === null)
+            throw new Error("The parameter 'contractId' cannot be null.");
+        else if (contractId !== undefined)
+            url_ += "ContractId=" + encodeURIComponent("" + contractId) + "&";
+        if (pageNumber === null)
+            throw new Error("The parameter 'pageNumber' cannot be null.");
+        else if (pageNumber !== undefined)
+            url_ += "PageNumber=" + encodeURIComponent("" + pageNumber) + "&";
+        if (pageSize === null)
+            throw new Error("The parameter 'pageSize' cannot be null.");
+        else if (pageSize !== undefined)
+            url_ += "PageSize=" + encodeURIComponent("" + pageSize) + "&";
+        if (orderBy !== undefined && orderBy !== null)
+            url_ += "OrderBy=" + encodeURIComponent("" + orderBy) + "&";
+        if (isOrderByAsc === null)
+            throw new Error("The parameter 'isOrderByAsc' cannot be null.");
+        else if (isOrderByAsc !== undefined)
+            url_ += "IsOrderByAsc=" + encodeURIComponent("" + isOrderByAsc) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "GET",
+            headers: {
+                "Accept": "application/json"
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.processGetWithContractId(_response);
+        });
+    }
+
+    protected processGetWithContractId(response: Response): Promise<PaginatedListOfContractBriefDto> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -392,6 +447,15 @@ export interface OptionInputDto {
     order?: number;
 }
 
+export interface PaginatedListOfContractBriefDto {
+    items?: ContractBriefDto[];
+    pageNumber?: number;
+    totalPages?: number;
+    totalCount?: number;
+    hasPreviousPage?: boolean;
+    hasNextPage?: boolean;
+}
+
 export interface BaseEntityDto {
     id?: number;
 }
@@ -403,11 +467,19 @@ export interface BaseAuditableEntityDto extends BaseEntityDto {
     lastModifiedBy?: string | undefined;
 }
 
+export interface ContractBriefDto extends BaseAuditableEntityDto {
+    type?: string;
+    title?: string;
+    version?: number;
+    isCurrent?: boolean;
+}
+
 export interface ContractDto extends BaseAuditableEntityDto {
     content?: string;
     type?: string;
     title?: string;
     version?: number;
+    isCurrent?: boolean;
     options?: OptionDto[];
 }
 
@@ -415,21 +487,6 @@ export interface OptionDto {
     content?: string;
     isRequired?: boolean;
     order?: number;
-}
-
-export interface PaginatedListOfContractBriefDto {
-    items?: ContractBriefDto[];
-    pageNumber?: number;
-    totalPages?: number;
-    totalCount?: number;
-    hasPreviousPage?: boolean;
-    hasNextPage?: boolean;
-}
-
-export interface ContractBriefDto extends BaseAuditableEntityDto {
-    type?: string;
-    title?: string;
-    version?: number;
 }
 
 export interface CreateSignedContractCommand {

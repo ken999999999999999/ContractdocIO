@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
+using ContractdocIO.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -17,6 +18,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace ContractdocIO.WebUI.Areas.Identity.Pages.Account
@@ -29,13 +31,15 @@ namespace ContractdocIO.WebUI.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IOUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IApplicationDbContext _context;
 
         public RegisterModel(
             UserManager<IOUser> userManager,
             IUserStore<IOUser> userStore,
             SignInManager<IOUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IApplicationDbContext context)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -43,6 +47,7 @@ namespace ContractdocIO.WebUI.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _context = context;
         }
 
         /// <summary>
@@ -123,6 +128,36 @@ namespace ContractdocIO.WebUI.Areas.Identity.Pages.Account
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
+                    var signedContracts = await _context.SignedContracts.Where(a => a.ReceivedByEmail == Input.Email).ToListAsync();
+
+                    foreach (var signedContract in signedContracts)
+                    {
+                        signedContract.ReceivedByUserId = user.Id;
+                    }
+
+                    var initContract = new Contract();
+                    initContract.ContractGroupId = Guid.NewGuid().ToString();
+
+                    initContract.Content = "<p>Dear Candidate,</p><p><br></p><p>" +
+                        "I am very pleased to offer your the position of IT Specialist. This is a full-time, permanent position with a start date of December 10<sup>th</sup> 2022." +
+                        "</p><p><br></p><p>This position will have a starting salary of $60,000.00 per year. " +
+                        "Your salary is payable, weekly, less required deduction, " +
+                        "</p><p><br></p><p>Your will receive one week of paid vacation per year, pro-rated for your first year if applicable. " +
+                        "Vacations are to be taken as such time or times are mutually convenient between the employer and employee." +
+                        "</p><p><br></p><p>You will be directly to report to David. " +
+                        "</p><p><br></p><p>We look forward to having you join out team and look forward to your response, " +
+                        "Should you have any question please don't hesitate to contract me at (111) 111-1111</p><p><br></p><p>Regards, </p><p>HR Team</p><p><br></p>";
+
+                    initContract.Type = "Employment";
+                    initContract.Title = "Offer of Employment";
+                    initContract.Options = new List<Option>() { new Option() { Content = "I accept the offer." } };
+
+                    initContract.OwnedByUserId = user.Id;
+
+                    user.Contracts.Add(initContract);
+
+                    await _context.SaveChangesAsync(new CancellationToken());
+
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
@@ -133,6 +168,9 @@ namespace ContractdocIO.WebUI.Areas.Identity.Pages.Account
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+
+
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

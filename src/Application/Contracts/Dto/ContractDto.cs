@@ -10,6 +10,8 @@ public class ContractDto : BaseAuditableEntityDto, IMapFrom<Contract>
 
     public int Version { get; set; } = 1;
 
+    public bool IsCurrent { get; set; }
+
     public IList<OptionDto> Options { get; set; } = new List<OptionDto>();
 
 }
