@@ -33,3 +33,5 @@ export { default as Steps } from './Steps';
 export { default as SuccessResult } from './SuccessResult';
 
 export { default as FormDialog } from './FormDialog';
+
+export { default as BoolIcon } from './BoolIcon';

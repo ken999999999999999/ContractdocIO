@@ -10,7 +10,7 @@ import {
   useState
 } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-
+import { SnackbarUtils } from '@/lib';
 export interface ISendContractDialogRef {
   open: () => void;
 }
@@ -46,6 +46,13 @@ export default forwardRef<ISendContractDialogRef, ISendContractDialog>(
     useEffect(() => {
       if (!open) reset();
     }, [open]);
+
+    useEffect(() => {
+      if (command.isSuccess) {
+        SnackbarUtils.success('Send Successfully! ');
+        setOpen(false);
+      }
+    }, [command]);
 
     return (
       <FormDialog

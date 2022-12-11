@@ -1,6 +1,6 @@
-import { IButton } from './Button';
+import Button, { IButton } from './Button';
 import SearchIcon from '@mui/icons-material/Search';
-import IconButton from './IconButton';
+
 import { useNavigate } from 'react-router-dom';
 
 interface IViewButton extends IButton {
@@ -10,10 +10,8 @@ interface IViewButton extends IButton {
 export default ({ to, ...rest }: IViewButton): JSX.Element => {
   const navigate = useNavigate();
   return (
-    <IconButton
-      children={<SearchIcon />}
-      onClick={() => navigate(to)}
-      {...rest}
-    />
+    <Button onClick={() => navigate(to)} {...rest}>
+      <SearchIcon />
+    </Button>
   );
 };

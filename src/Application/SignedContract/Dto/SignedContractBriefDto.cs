@@ -7,5 +7,5 @@ public class SignedContractBriefDto : BaseAuditableEntityDto, IMapFrom<SignedCon
     public DateTime? Signed { get; set; }
     public DateTime Sent { get; set; }
 
-    public IOUserDto ContractOwnedByUser;
+    public IOUserDto ContractOwnedByUser { get; set; }
 }

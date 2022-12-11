@@ -501,7 +501,6 @@ export interface UpdateSignedContractCommand {
 }
 
 export interface SignedContractDto extends BaseAuditableEntityDto {
-    contractOwnedByUser?: IOUserDto;
     checkOptions?: CheckOptionDto[];
     type?: string;
     title?: string;
@@ -510,10 +509,7 @@ export interface SignedContractDto extends BaseAuditableEntityDto {
     signature?: string | undefined;
     signed?: Date | undefined;
     sent?: Date;
-}
-
-export interface IOUserDto {
-    email?: string;
+    contractOwnedByUser?: IOUserDto;
 }
 
 export interface CheckOptionDto {
@@ -522,6 +518,10 @@ export interface CheckOptionDto {
     isRequired?: boolean;
     order?: number;
     isChecked?: boolean;
+}
+
+export interface IOUserDto {
+    email?: string;
 }
 
 export interface PaginatedListOfSignedContractBriefDto {
@@ -534,12 +534,12 @@ export interface PaginatedListOfSignedContractBriefDto {
 }
 
 export interface SignedContractBriefDto extends BaseAuditableEntityDto {
-    contractOwnedByUser?: IOUserDto;
     type?: string;
     title?: string;
     receivedByEmail?: string;
     signed?: Date | undefined;
     sent?: Date;
+    contractOwnedByUser?: IOUserDto;
 }
 
 export interface FileResponse {

@@ -1,5 +1,5 @@
 import { DataGrid, DataGridProps, GridSortModel } from '@mui/x-data-grid';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 
 interface IDataGrid extends Omit<DataGridProps, 'rows'> {
   data?: {
@@ -23,6 +23,7 @@ interface IDataGrid extends Omit<DataGridProps, 'rows'> {
 export default ({
   data,
   params,
+  columns,
   initialParams,
   onParamsChange,
   ...rest
@@ -51,6 +52,11 @@ export default ({
     [onParamsChange]
   );
 
+  const formattedColumns = useMemo(
+    () => columns.map((column) => ({ flex: 1, ...column })),
+    [columns]
+  );
+
   return (
     <div style={{ height: 500, width: '100%' }}>
       <DataGrid
@@ -65,6 +71,7 @@ export default ({
         onSortModelChange={onSortModelChange}
         onPageChange={onPageChange}
         onPageSizeChange={onPageSizeChange}
+        columns={formattedColumns}
         {...rest}
       />
     </div>

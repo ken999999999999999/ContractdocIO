@@ -4,6 +4,7 @@ import ContractsPage from '@/pages/built-contracts';
 import CreateContractPage from '@/pages/built-contracts/create-contract';
 import ContractDetailPage from '@/pages/built-contracts/[contractId]';
 import SentContractsPage from '@/pages/sent-contract';
+import SignedContractDetailPage from '@/pages/signed-contracts/[signedContractId]';
 
 interface IRouteList {
   link: string;
@@ -37,6 +38,11 @@ const RouteList: Array<IRouteList> = [
     link: '/contracts/:contractId',
     title: 'Built Contract Detail',
     jsx: <ContractDetailPage />
+  },
+  {
+    link: '/signed-contracts/:signedContractId',
+    title: 'Signed Contract Detail',
+    jsx: <SignedContractDetailPage />
   },
   {
     link: '*',

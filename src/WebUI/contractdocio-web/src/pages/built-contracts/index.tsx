@@ -1,9 +1,10 @@
-import { AddButton, Card, DataGrid, ViewButton } from '@/lib';
+import { AddButton, Card, DataGrid, ViewButton, Stack } from '@/lib';
 import { useGetContractsWithPagination } from '@/api/Contracts';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ContractBriefDto } from '@/api/web-api-client';
 import { GridColDef } from '@mui/x-data-grid';
+import { SendContractButton } from '@/components/Contracts';
 
 const initParams: IOrder = {
   pageNumber: 1,
@@ -19,7 +20,12 @@ const columns: GridColDef<ContractBriefDto>[] = [
   {
     field: 'id',
     headerName: 'Action',
-    renderCell: ({ id }) => <ViewButton to={`/contracts/${id ?? ''}`} />
+    renderCell: ({ id }) => (
+      <Stack>
+        <SendContractButton contractId={+id} />
+        <ViewButton to={`/contracts/${id}`} />
+      </Stack>
+    )
   }
 ];
 

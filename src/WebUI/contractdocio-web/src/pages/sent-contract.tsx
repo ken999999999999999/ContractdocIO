@@ -1,4 +1,4 @@
-import { AddButton, Card, DataGrid } from '@/lib';
+import { AddButton, Card, DataGrid, ViewButton } from '@/lib';
 import { useState } from 'react';
 import {
   useGetSignedContractsWithPagination,
@@ -17,20 +17,20 @@ const initParams: IGetSignedContractsWithPagination = {
   isOrderByAsc: false
 };
 
-const columns: GridColDef<any, SignedContractBriefDto>[] = [
+const columns: GridColDef<SignedContractBriefDto, any>[] = [
   { field: 'type', headerName: 'Type' },
   { field: 'title', headerName: 'Title' },
-  { field: 'signed', headerName: 'Signed' },
-  { field: 'sent', headerName: 'Sent' },
+  { field: 'sent', headerName: 'Sent', type: 'dateTime' },
   {
-    field: 'contractOwnedByUser',
-    headerName: `Sender's Email`,
-    renderCell: ({ value }) => value?.contractOwnedByUser?.email ?? ''
-  },
-  {
-    field: '',
+    field: 'receivedByEmail',
     headerName: `Receiver's Email`,
-    renderCell: ({ value }) => value?.contractOwnedByUser?.email ?? ''
+    renderCell: ({ row }) => row.receivedByEmail
+  },
+  { field: 'signed', headerName: 'Signed', type: 'dateTime' },
+  {
+    field: 'id',
+    headerName: 'Action',
+    renderCell: ({ id }) => <ViewButton to={`/signed-contracts/${id}`} />
   }
 ];
 
