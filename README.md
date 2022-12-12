@@ -23,6 +23,7 @@ Contract.IO provides a platform to help people create, customize and manage thei
 * [ReactJS](https://reactjs.org/)
 * [TypeScript](https://www.typescriptlang.org/)
 * [React Router](https://reactrouter.com/en/main)
+* [react-oidc-context](https://github.com/authts/react-oidc-context)
 * [MUI](https://mui.com/)
 * [TanStack Query](https://tanstack.com/query/v4)
 
