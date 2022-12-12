@@ -10,8 +10,11 @@ import { useAuth } from 'react-oidc-context';
 
 export default () => {
   const { signedContractId } = useParams();
-  const { isLoading, data: signedContract } =
-    useGetSignedContractById(signedContractId);
+  const {
+    isLoading,
+    data: signedContract,
+    refetch
+  } = useGetSignedContractById(signedContractId);
 
   const auth = useAuth();
 
@@ -19,7 +22,7 @@ export default () => {
     () =>
       !signedContract?.signed &&
       auth?.user?.profile.sub === signedContract?.receivedByUserId,
-    [signedContract]
+    [signedContract, auth]
   );
 
   return (
@@ -54,6 +57,7 @@ export default () => {
           <SignedContractSubmit
             signedContractId={+(signedContractId ?? 0)}
             checkOptions={signedContract?.checkOptions}
+            refresh={refetch}
           />
         )}
       </Box>

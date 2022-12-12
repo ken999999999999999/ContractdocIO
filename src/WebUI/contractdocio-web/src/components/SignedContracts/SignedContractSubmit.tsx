@@ -1,13 +1,8 @@
-import {
-  FormControlLabel,
-  FormGroup,
-  FormHelperText,
-  Typography
-} from '@mui/material';
+import { FormControlLabel, FormHelperText, Typography } from '@mui/material';
 import 'react-quill/dist/quill.snow.css';
 import { CheckOptionDto } from '@/api/web-api-client';
-import { Box, Button, Checkbox, Stack } from '@/lib';
-import { useCallback, useRef } from 'react';
+import { Box, Button, Checkbox, Loading, SnackbarUtils, Stack } from '@/lib';
+import { useCallback, useEffect, useRef } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useUpdateSignedContract } from '@/api/SignedContracts';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -17,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 interface ISignedContractSubmit {
   signedContractId: number;
   checkOptions?: CheckOptionDto[];
+  refresh: () => void;
 }
 
 interface ISubmitForm {
@@ -25,9 +21,10 @@ interface ISubmitForm {
 
 export default ({
   signedContractId,
-  checkOptions
+  checkOptions,
+  refresh
 }: ISignedContractSubmit): JSX.Element => {
-  const signRef = useRef(null);
+  const signRef = useRef<SignatureCanvas | null>(null);
   const {
     handleSubmit,
     control,
@@ -39,40 +36,54 @@ export default ({
   const command = useUpdateSignedContract();
 
   const onSubmit: SubmitHandler<ISubmitForm> = useCallback(
-    (value) => {
-      //const
+    (options) => {
+      if (signRef?.current?.isEmpty()) {
+        SnackbarUtils.warning('Please sign the contract!');
+        return;
+      }
+      const newOptionIds = Object.entries(options)
+        .filter(([_, value]) => value)
+        .map(([key]) => +key.replace('option', ''));
 
       command.mutate({
         id: signedContractId,
-        //checkOptionIds: Ob,
+        checkOptionIds: newOptionIds,
         signature: signRef?.current?.toDataURL()
       });
     },
-    [signedContractId]
+    [signedContractId, signRef]
   );
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (command.isSuccess) {
+      SnackbarUtils.success('Congratulations! Sign Successfully!');
+      refresh();
+      command.reset();
+    }
+  }, [command]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {checkOptions?.map((checkOption) => (
         <Controller
-          name={`options${checkOption?.id ?? 0}`}
+          name={`option${checkOption?.id ?? 0}`}
           control={control}
           rules={{
-            required: !checkOption.isRequired && 'This options must be checked!'
+            required: checkOption.isRequired && 'This option must be checked!'
           }}
           render={({ field: subField }) => (
             <>
               <FormControlLabel
                 control={<Checkbox checked={subField.value} {...subField} />}
                 label={`${checkOption?.content ?? ''}${
-                  !checkOption.isRequired ? '*' : ''
+                  checkOption.isRequired ? '*' : ''
                 }`}
               />
-              {errors[`options${checkOption?.id ?? 0}`] && (
+              {errors[`option${checkOption?.id ?? 0}`] && (
                 <FormHelperText error>
-                  {errors[`options${checkOption?.id ?? 0}`]?.message}
+                  {errors[`option${checkOption?.id ?? 0}`]?.message}
                 </FormHelperText>
               )}
             </>
@@ -113,6 +124,7 @@ export default ({
           Submit
         </Button>
       </Stack>
+      <Loading loading={command.isLoading} />
     </form>
   );
 };

@@ -55,13 +55,15 @@ export default ({
       )}
       {showSignature && (
         <Box width={450} height={200} marginLeft="auto" marginRight="auto">
+          <Typography variant="overline" marginTop={3}>
+            Date: {signed?.toString() ?? 'Not signed yet'}
+          </Typography>
           <Box
             border="0.5px solid gray"
             width={450}
             height={150}
             marginLeft="auto"
             marginRight="auto"
-            marginTop={3}
             p={2}
           >
             {signature && (
@@ -72,9 +74,6 @@ export default ({
               />
             )}
           </Box>
-          <Typography variant="overline">
-            Date: {signed?.toString() ?? 'Not signed yet'}
-          </Typography>
         </Box>
       )}
     </>
