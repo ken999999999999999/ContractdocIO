@@ -42,12 +42,8 @@
 	</ItemGroup>
 	<ItemGroup>
 		<!-- Don't publish the SPA source files, but do show them in the project files list -->
-		<Compile Remove="contactdocio-web\**" />
 		<Content Remove="$(SpaRoot)**" />
-		<Content Remove="contactdocio-web\**" />
-		<EmbeddedResource Remove="contactdocio-web\**" />
 		<None Remove="$(SpaRoot)**" />
-		<None Remove="contactdocio-web\**" />
 		<None Remove="Microsoft.EntityFrameworkCore.Design" />
 		<None Remove="Microsoft.AspNetCore.Authentication.Google" />
 	</ItemGroup>
