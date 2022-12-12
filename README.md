@@ -1,5 +1,6 @@
 # Contract.IO
 > A Single Page App(SPA) with ReactJS and ASP.NET Core following the principles of Clean Architecture.
+> Implement Azure CI/CD with Github action
 
 Contract.IO provides a platform to help people create, customize and manage their contracts. 
 
