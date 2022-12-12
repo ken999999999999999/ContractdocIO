@@ -33,7 +33,7 @@ jobs:
         run: npm i -g npm@latest
         
       - name: Create REACT Env
-        run: (echo REACT_APP_AUTH_URL=${{ secrets.REACT_APP_AUTH_URL }} & echo REACT_APP_CLIENT_SECRET=${{ secrets.REACT_APP_CLIENT_SECRET }}) >> ./src/WebUI/contractdocio-web/.env.production
+        run: echo "REACT_APP_AUTH_URL=${{ secrets.REACT_APP_AUTH_URL }}`nREACT_APP_CLIENT_SECRET=${{ secrets.REACT_APP_CLIENT_SECRET }}" > ./src/WebUI/contractdocio-web/.env.production
         
       - name: dotnet publish
         run: dotnet publish ./src/WebUI -c Release -o ${{env.DOTNET_ROOT}}/myapp
