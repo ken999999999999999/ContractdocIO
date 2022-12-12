@@ -40,7 +40,7 @@ export default ({
         </strong>
       </Typography>
       <ReactQuill theme="bubble" readOnly value={content} />
-      {checkOptions?.length && showSignature && (
+      {checkOptions?.length && showSignature ? (
         <FormGroup>
           {checkOptions
             ?.sort((a, b) => (a?.order ?? 0) - (b?.order ?? 0))
@@ -52,7 +52,7 @@ export default ({
               />
             ))}
         </FormGroup>
-      )}
+      ) : null}
       {showSignature && (
         <Box width={450} height={200} marginLeft="auto" marginRight="auto">
           <Typography variant="overline" marginTop={3}>
