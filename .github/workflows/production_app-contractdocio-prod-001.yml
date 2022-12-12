@@ -31,8 +31,12 @@ jobs:
         run: npm i -g npm@latest
 
       - name: Set up React ENV
-        run: echo "CI=\"\"\nREACT_APP_AUTH_URL=${{secrets.REACT_APP_AUTH_URL}}\nREACT_APP_CLIENT_SECRET=${{secrets.REACT_APP_CLIENT_SECRET}}"  > .\src\WebUI\contractdocio-web\.env.production
+        run: echo "REACT_APP_AUTH_URL=${{secrets.REACT_APP_AUTH_URL}}\nREACT_APP_CLIENT_SECRET=${{secrets.REACT_APP_CLIENT_SECRET}}"  > .\src\WebUI\contractdocio-web\.env.production
 
+
+      - name: Cd to correct file
+        run: cd src/WebUI
+        
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
