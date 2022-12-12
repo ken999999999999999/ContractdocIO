@@ -35,7 +35,7 @@ export default ({
         label="Title*"
         {...register('title', {
           required: { value: true, message: 'Title is required' },
-          maxLength: { value: 20, message: 'Max Length is 20' }
+          maxLength: { value: 200, message: 'Max Length is 200' }
         })}
         error={!!errors?.title}
         helperText={errors?.title?.message ?? ''}
@@ -44,7 +44,7 @@ export default ({
         label="Type*"
         {...register('type', {
           required: { value: true, message: 'Type is required' },
-          maxLength: { value: 20, message: 'Max Length is 20' }
+          maxLength: { value: 200, message: 'Max Length is 200' }
         })}
         error={!!errors?.type}
         helperText={errors?.type?.message ?? ''}
@@ -68,7 +68,7 @@ export default ({
             label="Option Content*"
             {...register(`options.${index}.content`, {
               required: { value: true, message: 'Content is required' },
-              maxLength: { value: 20, message: 'Max Length is 20' }
+              maxLength: { value: 200, message: 'Max Length is 200' }
             })}
             error={!!errors?.options?.[index]?.content}
             helperText={errors?.options?.[index]?.content?.message ?? ''}
