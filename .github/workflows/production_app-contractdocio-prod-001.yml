@@ -28,7 +28,7 @@ jobs:
           node-version: latest
           
       - name: Set up React ENV
-        run: echo "REACT_APP_AUTH_URL=${{secrets.REACT_APP_AUTH_URL}}\nREACT_APP_CLIENT_SECRET=${{secrets.REACT_APP_CLIENT_SECRET}}"  > ${{env.DOTNET_ROOT}}\src\WebUI\contractdocio-web\.env.production
+        run: echo "REACT_APP_AUTH_URL=${{secrets.REACT_APP_AUTH_URL}}\nREACT_APP_CLIENT_SECRET=${{secrets.REACT_APP_CLIENT_SECRET}}"  > .\src\WebUI\contractdocio-web\.env.production
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
