@@ -33,15 +33,8 @@ jobs:
       - name: Set up React ENV
         run: echo "REACT_APP_AUTH_URL=${{secrets.REACT_APP_AUTH_URL}}\nREACT_APP_CLIENT_SECRET=${{secrets.REACT_APP_CLIENT_SECRET}}"  > .\src\WebUI\contractdocio-web\.env.production
 
-
-      - name: Cd to correct file
-        run: cd src/WebUI
-        
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
-
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish ./src/WebUI -c Release -o ${{env.DOTNET_ROOT}}/myapp
         env:
           CI: ""
 
