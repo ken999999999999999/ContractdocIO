@@ -6,11 +6,6 @@ Contract.IO provides a platform to help people create, customize and manage thei
 > * Implement Azure CI/CD with Github action
 > * Integrate Google Sign in
 
-## Learn about Clean Architecture
-
-[![Clean Architecture with ASP.NET Core 3.0 • Jason Taylor • GOTO 2019](https://img.youtube.com/vi/dK4Yb6-LxAk/0.jpg)](https://www.youtube.com/watch?v=dK4Yb6-LxAk)
-
-
 ## Technologies
 
 ### Backend
@@ -49,7 +44,7 @@ If you want to disable this feature, please remove or comment below lines in "sr
 >       //  });
 
 ### Set Up Environment & Lanuch the Project
-1. Install the latest .NET SDK
+1. Install the latest .NET 7 SDK
 2. Install the latest Node.js LTS
 3. Navigate to `src/WebUI` and launch the API service using `dotnet run`
 4. Navigate to 'contractdocio-web'
@@ -89,5 +84,8 @@ This layer is a single page application based on ReactJS and ASP.NET Core. This 
 
 ## Reference
 
+[![Clean Architecture with ASP.NET Core 3.0 • Jason Taylor • GOTO 2019](https://img.youtube.com/vi/dK4Yb6-LxAk/0.jpg)](https://www.youtube.com/watch?v=dK4Yb6-LxAk)
 * [Clean Architecture Solution Template with ASP.NET Core 7](https://github.com/jasontaylordev/CleanArchitecture)
 * [Create-React-App](https://github.com/facebook/create-react-app)
+
+
