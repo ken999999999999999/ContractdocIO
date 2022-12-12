@@ -22,15 +22,17 @@ jobs:
           dotnet-version: '7.x'
           include-prerelease: true
           
-      - name: etup Node.js environment
+      - name: Setup Node.js environment
         uses: actions/setup-node@v3.5.1
         with:
           node-version: latest
-          
+      
+      - name: Update Npm
+        run: npm i -g npm@latest
+        
       - name: Set up React ENV
         run: echo "CI=false\nREACT_APP_AUTH_URL=${{secrets.REACT_APP_AUTH_URL}}\nREACT_APP_CLIENT_SECRET=${{secrets.REACT_APP_CLIENT_SECRET}}"  > .\src\WebUI\contractdocio-web\.env.production
-      - name: Shoe file
-        run: dir
+
         
       - name: Build with dotnet
         run: dotnet build --configuration Release
