@@ -1,9 +1,10 @@
 # Contract.IO
-> A Single Page App(SPA) with ReactJS and ASP.NET Core following the principles of Clean Architecture.
+Contract.IO provides a platform to help people create, customize and manage their contracts.
+( The production environment is only available for 60 minutes per day as it is a free instance. )
 
-> Implement Azure CI/CD with Github action
-
-Contract.IO provides a platform to help people create, customize and manage their contracts. 
+> * A Single Page App(SPA) with ReactJS and ASP.NET Core following the principles of Clean Architecture.
+> * Implement Azure CI/CD with Github action
+> * Integrate Google Sign in
 
 ## Learn about Clean Architecture
 
@@ -30,6 +31,22 @@ Contract.IO provides a platform to help people create, customize and manage thei
 * [TanStack Query](https://tanstack.com/query/v4)
 
 ## Getting Started
+
+### Set Up Google Sign in
+1. Follow https://developers.google.com/identity/openid-connect/openid-connect to set up OAuth 2.0 credential
+2. Fill in ClientId and ClientSerect in appsettings.json
+>    "Google": { "ClientId": {Your Client Id}, "ClientSecret": {Your Client Secret} }
+
+If you want to disable this feature, please remove or comment below lines in "src/Infrastructure/ConfigureServices.cs"
+
+>         services.AddAuthentication()
+>         .AddIdentityServerJwt()
+>       //.AddGoogle(googleOptions =>
+>       //{
+>       //   googleOptions.ClientId = configuration["IdentityServer:Google:ClientId"];
+>       //   googleOptions.ClientSecret = configuration["IdentityServer:Google:ClientSecret"];
+>       //   googleOptions.SaveTokens = true;
+>       //  });
 
 ### Set Up Environment & Lanuch the Project
 1. Install the latest .NET SDK
