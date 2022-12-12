@@ -8,5 +8,6 @@ namespace NodeJS {
     REACT_APP_AUTH_URL: string;
     REACT_APP_CLIENT_ID: string;
     REACT_APP_CLIENT_SECRET: string;
+    REACT_APP_VERSION: string;
   }
 }
