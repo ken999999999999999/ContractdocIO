@@ -22,9 +22,8 @@ jobs:
           dotnet-version: '7.x'
           include-prerelease: true
           
-      - name: Set up Node
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: etup Node.js environment
+      - uses: actions/setup-node@v3.5.1
         with:
           node-version: latest
           
