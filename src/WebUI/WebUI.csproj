@@ -50,7 +50,7 @@
 	<PropertyGroup>
 		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
 	</PropertyGroup>
-	<Target Name="NSwag" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)' == 'Debug' ">
+	<Target Name="NSwag" Condition=" '$(Configuration)' == 'Debug' ">
 		<Exec Command="$(NSwagExe_Net60) run nswag.json /variables:Configuration=$(Configuration)" />
 	</Target>
 	<Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

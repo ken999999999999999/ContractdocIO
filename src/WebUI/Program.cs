@@ -65,7 +65,11 @@ app.UseSpa(spa =>
     }
 });
 
-app.MapFallbackToFile("index.html"); ;
+if (!app.Environment.IsDevelopment())
+{
+    app.MapFallbackToFile("index.html");
+}
+
 
 app.Run();
 
