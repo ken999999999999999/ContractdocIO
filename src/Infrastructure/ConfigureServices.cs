@@ -42,6 +42,7 @@ public static class ConfigureServices
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.Lockout.AllowedForNewUsers = true;
+                options.SignIn.RequireConfirmedEmail = true;
 
             })
             .AddRoles<IdentityRole>()
