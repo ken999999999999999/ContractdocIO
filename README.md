@@ -3,7 +3,7 @@ Contract.IO provides a platform to help people create, customize and manage thei
 
 > * A Single Page App(SPA) with ReactJS and ASP.NET Core following the principles of Clean Architecture.
 > * Implement Azure CI/CD with Github action
-> * Integrate Google Sign in
+> * Implement OAuth 2.0 with IdentityServer4 and Google Sign-in.
 
 ## Technologies
 
