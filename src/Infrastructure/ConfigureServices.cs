@@ -5,7 +5,6 @@ using ContractdocIO.Infrastructure.Persistence;
 using ContractdocIO.Infrastructure.Persistence.Interceptors;
 using ContractdocIO.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Configuration;

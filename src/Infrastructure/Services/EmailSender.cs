@@ -23,15 +23,23 @@ public class EmailSender:IEmailSender
         {
             throw new Exception("Null SendGridKey");
         }
-        await Execute(Options.SendGridKey, subject, message, toEmail);
+        if (string.IsNullOrEmpty(Options.Email))
+        {
+            throw new Exception("Null Email");
+        }
+        if (string.IsNullOrEmpty(Options.Name))
+        {
+            throw new Exception("Null Name");
+        }
+        await Execute(Options, subject, message, toEmail);
     }
 
-    public async Task Execute(string apiKey, string subject, string message, string toEmail)
+    public async Task Execute(AuthMessageSenderOptions options, string subject, string message, string toEmail)
     {
-        var client = new SendGridClient(apiKey);
+        var client = new SendGridClient(options.SendGridKey);
         var msg = new SendGridMessage()
         {
-            From = new EmailAddress("contractdocio@gmail.com", "Contract.IO"),
+            From = new EmailAddress(options.Email, options.Name),
             Subject = subject,
             PlainTextContent = message,
             HtmlContent = message
