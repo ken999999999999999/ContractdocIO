@@ -46,7 +46,7 @@ If you want to disable this feature, please remove or comment below lines in "sr
 ### Set Up SendGrid
 1. Create a SendGrid Account
 2. Fill in following information in appsettings.json
->        "AuthMessageSender": { "Email": "", "Name": "", "SendGridKey": "" }
+>        "AuthMessageSender": { "Email": {Sender's Email}, "Name": {Sender's Name}, "SendGridKey": {API Key} }
 
 ### Set Up Environment & Lanuch the Project
 1. Install the latest .NET 7 SDK
