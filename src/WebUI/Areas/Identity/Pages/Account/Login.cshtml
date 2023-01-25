@@ -1,6 +1,6 @@
 ﻿@page
 @model LoginModel
-
+@inject SignInManager<IOUser> SignInManager
 @{
     ViewData["Title"] = "Log In";
 }
@@ -12,33 +12,34 @@
         </div>
 
         <div class="col-6  m-20 py-3">
-            <form id="account" method="post">
+            @if (!SignInManager.IsSignedIn(User))
+            {<form id="account" method="post">
 
-                @if (!Model.ModelState.IsValid)
-                {
-                    <div class="alert alert-danger mb-3" role="alert">
-                        <div asp-validation-summary="All" class="text-danger "></div>
+                    @if (!Model.ModelState.IsValid)
+                    {
+                        <div class="alert alert-danger mb-3" role="alert">
+                            <div asp-validation-summary="All" class="text-danger "></div>
+                        </div>
+                    }
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                        <label asp-for="Input.Email" class="form-label"></label>
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
                     </div>
-                }
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
+                        <label asp-for="Input.Password" class="form-label"></label>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary mb-3">Log in</button>
+                    </div>
 
-                <div class="form-floating mb-3">
-                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-                    <label asp-for="Input.Email" class="form-label"></label>
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-floating mb-3">
-                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
-                    <label asp-for="Input.Password" class="form-label"></label>
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary mb-3">Log in</button>
-                </div>
+                </form>
 
-            </form>
-            @{
-                if (Model.ExternalLogins?.Count > 0)
-                { <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                @if (Model.ExternalLogins?.Count > 0)
+                {<form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
                         <div>
                             <p>
                                 @foreach (var provider in Model.ExternalLogins)
@@ -49,18 +50,25 @@
                         </div>
                     </form>
                 }
+
+                <div>
+                    <p>
+                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                    </p>
+                    <p>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                    </p>
+                    <p>
+                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                    </p>
+                </div>
             }
-            <div>
-                <p>
-                    <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                </p>
-                <p>
-                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                </p>
-                <p>
-                    <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                </p>
-            </div>
+            else
+            {
+                <div class="alert mb-3" role="alert">
+                    <div>You are logged in!</div>
+                </div>
+            }
         </div>
     </div>
 </section>
