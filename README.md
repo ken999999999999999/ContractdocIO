@@ -4,6 +4,7 @@ Contract.IO provides a platform to help people create, customize and manage thei
 > * A Single Page App(SPA) with ReactJS and ASP.NET Core following the principles of Clean Architecture.
 > * Implement Azure CI/CD with Github action
 > * Implement OAuth 2.0 with IdentityServer4 and Google Sign-in.
+> * Implement Email Service with SendGrid.
 
 ## Technologies
 
@@ -41,6 +42,11 @@ If you want to disable this feature, please remove or comment below lines in "sr
 >       //   googleOptions.ClientSecret = configuration["IdentityServer:Google:ClientSecret"];
 >       //   googleOptions.SaveTokens = true;
 >       //  });
+
+### Set Up SendGrid
+1. Create a SendGrid Account
+2. Fill in following information in appsettings.json
+>        "AuthMessageSender": { "Email": {Sender's Email}, "Name": {Sender's Name}, "SendGridKey": {API Key} }
 
 ### Set Up Environment & Lanuch the Project
 1. Install the latest .NET 7 SDK
